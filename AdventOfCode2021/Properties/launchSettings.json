@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "AdventOfCode2021": {
+      "commandName": "Project",
+      "commandLineArgs": "-d",
+      "workingDirectory": "C:\\Users\\jeroenvonk\\source\\repos\\AdventOfCode\\AdventOfCode2021\\Data"
+    }
+  }
+}
