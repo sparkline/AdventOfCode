@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 
 namespace AdventOfCode2021.Common
 {
@@ -21,8 +16,8 @@ namespace AdventOfCode2021.Common
             this.CodeType = codeType;
         }
 
-        public int Day { get; protected set; } 
-        public int Year{ get; protected set; }
+        public int Day { get; protected set; }
+        public int Year { get; protected set; }
         public CodeType CodeType { get; protected set; }
 
         #region Part A
@@ -125,7 +120,8 @@ namespace AdventOfCode2021.Common
                 //string baseDir = AppDomain.CurrentDomain.BaseDirectory;
                 //baseDir = baseDir.Substring(0, baseDir.IndexOf("bin"))+"Data\\";
                 return File.ReadAllText(baseDir + fileName);
-            } catch (FileNotFoundException fnfEx)
+            }
+            catch (FileNotFoundException fnfEx)
             {
                 Console.WriteLine($"Could not find file '{fileName}'");
                 throw fnfEx;

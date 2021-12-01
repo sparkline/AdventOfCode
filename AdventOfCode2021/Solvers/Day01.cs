@@ -1,9 +1,4 @@
 ﻿using AdventOfCode2021.Common;
-using System;
-using System.Collections;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AdventOfCode2021.Day01
 {
@@ -19,7 +14,7 @@ namespace AdventOfCode2021.Day01
             foreach (var item in valueList)
             {
                 if (item > prevValue) count++;
-                prevValue = item;   
+                prevValue = item;
             }
             return count;
         }
@@ -31,7 +26,7 @@ namespace AdventOfCode2021.Day01
             int count = 0;
             for (int i = 0; i < valueList.Count - 2; i++)
             {
-                int newValue = valueList[i] + valueList[i+1] + valueList[i+2];
+                int newValue = valueList[i] + valueList[i + 1] + valueList[i + 2];
                 if (newValue > prevValue) count++;
                 prevValue = newValue;
             }

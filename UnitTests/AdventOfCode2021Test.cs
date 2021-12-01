@@ -1,4 +1,3 @@
-using AdventOfCode2021;
 using AdventOfCode2021.Day01;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -20,7 +19,7 @@ namespace UnitTests
         public void Day01aTest()
         {
             Day01 solution = new Day01();
-            
+
             var result = solution.TestPartAResult();
 
             Assert.AreEqual(7, result);
