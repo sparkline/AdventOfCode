@@ -72,7 +72,7 @@ async Task fetchInputFile(string inputFile, int year, int day)
 		File.WriteAllText(inputFile, await response.Content.ReadAsStringAsync());
 	} catch (HttpRequestException ex)
 	{
-		Console.WriteLine($"Could not fetch inputfile {inputFile}");
+		Console.WriteLine($"Could not fetch inputfile {inputFile}: {ex.Message}");
 	}
 
 }
@@ -82,7 +82,7 @@ static IEnumerable<Solver> GetSolvers() =>
 	Assembly.GetExecutingAssembly().GetTypes()
 		.Where(t => t.BaseType == typeof(Solver))
 		//.Where(t => t.Name != nameof(DummyDay))
-		.Select(t => (Solver)Activator.CreateInstance(t))
+		.Select(t => (Solver?)Activator.CreateInstance(t))
 		.OfType<Solver>() // filter out nulls
 		.OrderBy(d => d.Year)
 		.ThenBy(d => d.Day)

@@ -361,3 +361,9 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# Ignore app settings file, session id is secret and goes there
+SessionId.json
+
+# Ignore input files, they will be re-downloaded
+Input.*

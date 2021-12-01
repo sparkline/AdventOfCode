@@ -47,7 +47,7 @@ namespace AdventOfCode2021.Common
             var result = RunSafeA(input);
             stopWatch.Stop();
             Console.WriteLine($"{Year}-{Day} Part A ({CodeType}) [{stopWatch.ElapsedMilliseconds:000000}ms]:    {result?.ToString()}");
-            return result;
+            return result ?? String.Empty;
         }
 
         public object TestPartAResult()
@@ -91,7 +91,7 @@ namespace AdventOfCode2021.Common
             var result = RunSafeB(input);
             stopWatch.Stop();
             Console.WriteLine($"{Year}-{Day} Part B ({CodeType}) [{stopWatch.ElapsedMilliseconds:000000}ms]:    {result?.ToString()}");
-            return result;
+            return result ?? String.Empty;
         }
 
         public object TestPartBResult()
