@@ -35,6 +35,25 @@ namespace UnitTests
             Assert.AreEqual(5, result);
         }
 
+        [TestMethod]
+        public void Day02aTest()
+        {
+            Day02 solution = new Day02();
+
+            var result = solution.TestPartAResult();
+
+            Assert.AreEqual(150, result);
+        }
+
+        [TestMethod]
+        public void Day02Test()
+        {
+            Day02 solution = new Day02();
+
+            var result = solution.TestPartBResult();
+
+            Assert.AreEqual(900, result);
+        }
 
     }
 }

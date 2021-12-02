@@ -4,7 +4,12 @@
     {
         public static List<int> ToIntList(this string input)
         {
-            return input.Split(new string[] { "\r", "\n", "\r\n" }, StringSplitOptions.RemoveEmptyEntries).Select(s => int.Parse(s)).ToList();
+            return SplitOnNewline(input).Select(s => int.Parse(s)).ToList();
+        }
+
+        public static List<string> SplitOnNewline(this string input)
+        {
+            return input.Split(new string[] { "\r", "\n", "\r\n" }, StringSplitOptions.RemoveEmptyEntries).ToList();
         }
     }
 }
