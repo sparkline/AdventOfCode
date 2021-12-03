@@ -367,3 +367,6 @@ SessionId.json
 
 # Ignore input files, they will be re-downloaded
 Input.*
+
+# Ignore launch settings
+launchSettings.json

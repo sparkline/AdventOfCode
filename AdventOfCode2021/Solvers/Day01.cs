@@ -1,6 +1,6 @@
 ﻿using AdventOfCode2021.Common;
 
-namespace AdventOfCode2021.Day01
+namespace AdventOfCode2021.Solvers
 {
     public class Day01 : Solver
     {

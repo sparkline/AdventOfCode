@@ -1,4 +1,4 @@
-using AdventOfCode2021.Day01;
+using AdventOfCode2021.Solvers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.IO;
@@ -46,13 +46,33 @@ namespace UnitTests
         }
 
         [TestMethod]
-        public void Day02Test()
+        public void Day02bbTest()
         {
             Day02 solution = new Day02();
 
             var result = solution.TestPartBResult();
 
             Assert.AreEqual(900, result);
+        }
+
+        [TestMethod]
+        public void Day03aTest()
+        {
+            Day03 solution = new Day03();
+
+            var result = solution.TestPartAResult();
+
+            Assert.AreEqual(198, result);
+        }
+
+        [TestMethod]
+        public void Day03bTest()
+        {
+            Day03 solution = new Day03();
+
+            var result = solution.TestPartBResult();
+
+            Assert.AreEqual(230, result);
         }
 
     }
