@@ -24,14 +24,14 @@ namespace AdventOfCode2021.Solvers
             bool[] leastCommon = mostCommon.Select(b => !b).ToArray();
 
             // construct binary string
-            string gammaString = string.Join(null, mostCommon.Select(b => b ? '1': '0'));
+            string gammaString = string.Join(null, mostCommon.Select(b => b ? '1' : '0'));
             string epsilonString = string.Join(null, leastCommon.Select(b => b ? '1' : '0'));
 
             // convert to int
             int gamma = Convert.ToInt32(gammaString, 2);
             int epsilon = Convert.ToInt32(epsilonString, 2);
 
-            return epsilon*gamma;
+            return epsilon * gamma;
         }
 
         protected override object PartB(string input)
@@ -84,7 +84,7 @@ namespace AdventOfCode2021.Solvers
                 }
             }
 
-            return oxygen*co2;
+            return oxygen * co2;
         }
     }
 }

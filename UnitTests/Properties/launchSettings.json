@@ -1,8 +1,0 @@
-{
-  "profiles": {
-    "UnitTests": {
-      "commandName": "Project",
-      "workingDirectory": "C:\\Users\\jeroenvonk\\source\\repos\\AdventOfCode\\UnitTests\\Data\\"
-    }
-  }
-}
