@@ -24,7 +24,7 @@ namespace AdventOfCode2021.Solvers
                     }
                 }
             }
-            return null;
+            return 0;
         }
 
         protected override object PartB(string input)
@@ -49,7 +49,7 @@ namespace AdventOfCode2021.Solvers
                     }
                 }
             }
-            return null;
+            return 0;
         }
 
         private List<BingoBoard> readBingoBoards(List<string> lines)
