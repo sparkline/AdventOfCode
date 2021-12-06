@@ -134,5 +134,17 @@ namespace UnitTests
 
             Assert.AreEqual(12, result);
         }
+
+        [TestMethod]
+        public void Day06aTest()
+        {
+            Day06 solution = new Day06();
+
+            var result = solution.TestPartAResult();
+
+            Assert.AreEqual(5934, result);
+        }
+
+        // No 6b test available
     }
 }
