@@ -6,6 +6,7 @@ namespace AdventOfCode2021.Common
     {
         Original,
         Fastest,
+        Brief,
     }
     public abstract class Solver
     {

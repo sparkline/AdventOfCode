@@ -146,5 +146,48 @@ namespace UnitTests
         }
 
         // No 6b test available
+
+        [TestMethod]
+        public void Day07aTest()
+        {
+            Day07 solution = new Day07();
+
+            var result = solution.TestPartAResult();
+
+            Assert.AreEqual(37, result);
+        }
+
+        [TestMethod]
+        public void Day07bTest()
+        {
+            Day07 solution = new Day07();
+
+            var result = solution.TestPartBResult();
+
+            Assert.AreEqual(168, result);
+        }
+
+
+        [TestMethod]
+        public void Day07aBriefTest()
+        {
+            Day07Brief solution = new Day07Brief();
+
+            var result = solution.TestPartAResult();
+
+            Assert.AreEqual(37, result);
+        }
+
+        [TestMethod]
+        public void Day07bBriefTest()
+        {
+            Day07Brief solution = new Day07Brief();
+
+            var result = solution.TestPartBResult();
+
+            Assert.AreEqual(168, result);
+        }
+
+
     }
 }
