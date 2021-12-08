@@ -188,6 +188,26 @@ namespace UnitTests
             Assert.AreEqual(168, result);
         }
 
+        [TestMethod]
+        public void Day08aTest()
+        {
+            Day08 solution = new Day08();
+
+            var result = solution.TestPartAResult();
+
+            Assert.AreEqual(26, result);
+        }
+
+        [TestMethod]
+        public void Day08bTest()
+        {
+            Day08 solution = new Day08();
+
+            var result = solution.TestPartBResult();
+
+            Assert.AreEqual(61229, result);
+        }
+
 
     }
 }
