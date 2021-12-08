@@ -167,7 +167,6 @@ namespace UnitTests
             Assert.AreEqual(168, result);
         }
 
-
         [TestMethod]
         public void Day07aBriefTest()
         {
@@ -182,6 +181,26 @@ namespace UnitTests
         public void Day07bBriefTest()
         {
             Day07Brief solution = new Day07Brief();
+
+            var result = solution.TestPartBResult();
+
+            Assert.AreEqual(168, result);
+        }
+
+        [TestMethod]
+        public void Day07aFastestTest()
+        {
+            Day07Fast solution = new Day07Fast();
+
+            var result = solution.TestPartAResult();
+
+            Assert.AreEqual(37, result);
+        }
+
+        [TestMethod]
+        public void Day07bFastestTest()
+        {
+            Day07Fast solution = new Day07Fast();
 
             var result = solution.TestPartBResult();
 
