@@ -14,7 +14,7 @@ namespace AdventOfCode2021.Solvers
             // argmin[x] Sum(|Si-x|) ==> minimum for Sum(sign(Si-x)), which is the median
             int median = crabPositions.Length / 2;
 
-            return crabPositions.Sum(x => Math.Abs(x-crabPositions[median]));
+            return crabPositions.Sum(x => Math.Abs(x - crabPositions[median]));
         }
 
         protected override object PartB(string input)
@@ -45,7 +45,7 @@ namespace AdventOfCode2021.Solvers
             int N = crabPositions.Length;
 
             int answerLocation = (int)Math.Floor((N * (average - 0.5)) / (N - 1));
-            return crabPositions.Sum(x => Math.Abs(x - answerLocation) * (1+ Math.Abs(x - answerLocation)) * 0.5);
+            return crabPositions.Sum(x => Math.Abs(x - answerLocation) * (1 + Math.Abs(x - answerLocation)) * 0.5);
         }
     }
 }
