@@ -230,7 +230,6 @@ namespace UnitTests
             Assert.AreEqual(61229, result);
         }
 
-
         [TestMethod]
         public void Day09aTest()
         {
@@ -251,5 +250,24 @@ namespace UnitTests
             Assert.AreEqual(1134, result);
         }
 
+        [TestMethod]
+        public void Day10aTest()
+        {
+            Day10 solution = new Day10();
+
+            var result = solution.TestPartAResult();
+
+            Assert.AreEqual(26397, result);
+        }
+
+        [TestMethod]
+        public void Day10bTest()
+        {
+            Day10 solution = new Day10();
+
+            var result = solution.TestPartBResult();
+
+            Assert.AreEqual(288957, result);
+        }
     }
 }
