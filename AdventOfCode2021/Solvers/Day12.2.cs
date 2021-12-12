@@ -39,22 +39,28 @@ namespace AdventOfCode2021.Solvers
                 var dest1 = (name: to, to.ToUpper() == to);
                 var dest2 = (name: from, from.ToUpper() == from);
 
-                if (edges.TryGetValue(from, out var val1))
+                if (to != "start" && from != "end")
                 {
-                    val1.Add(dest1);
-                }
-                else
-                {
-                    edges.Add(from, new HashSet<(string name, bool isUpper)> { dest1 });
+                    if (edges.TryGetValue(from, out var val1))
+                    {
+                        val1.Add(dest1);
+                    }
+                    else
+                    {
+                        edges.Add(from, new HashSet<(string name, bool isUpper)> { dest1 });
+                    }
                 }
 
-                if (edges.TryGetValue(to, out var val2))
+                if (from != "start" && to != "end")
                 {
-                    val2.Add(dest2);
-                }
-                else
-                {
-                    edges.Add(to, new HashSet<(string name, bool isUpper)> { dest2 });
+                    if (edges.TryGetValue(to, out var val2))
+                    {
+                        val2.Add(dest2);
+                    }
+                    else
+                    {
+                        edges.Add(to, new HashSet<(string name, bool isUpper)> { dest2 });
+                    }
                 }
             }
             return edges;
@@ -78,42 +84,30 @@ namespace AdventOfCode2021.Solvers
             while (toVisit.Count > 0)
             {
                 var visit = toVisit.Pop();
-                if (visit.vertice == destinationVertice)
+                if (edges.TryGetValue(visit.vertice, out HashSet<(string name, bool isUpper)>? newConnections))
                 {
-                    solutions++;
-                    Console.WriteLine(string.Join(", ", visit.visited));
-                    continue;
-                }
-
-                var newConnections = edges[visit.vertice];
-                foreach (var conn in newConnections)
-                {
-                    string targetVertice = conn.name;
-
-                    // Skip if start
-                    if (targetVertice == startVertice)
+                    foreach (var conn in newConnections)
                     {
-                        continue;
-                    }
+                        string targetVertice = conn.name;
 
-                    // Skip if end
-                    if (targetVertice == destinationVertice)
-                    {
-                        solutions++;
-                        continue;
-                    }
-
-                    // Skip if double
-                    int _shortCutsAllowed = visit.remainingShortcuts;
-                    if (!conn.isUpper && visit.visited.Contains(targetVertice))
-                    {
-                        if (--_shortCutsAllowed < 0)
+                        // Skip if end
+                        if (targetVertice == destinationVertice)
                         {
-                            continue;
+                            solutions++;
                         }
-                    }
 
-                    toVisit.Push((targetVertice, _shortCutsAllowed, visit.visited.Append(targetVertice).ToArray()));
+                        // Skip if double
+                        int _shortCutsAllowed = visit.remainingShortcuts;
+                        if (!conn.isUpper && visit.visited.Contains(targetVertice))
+                        {
+                            if (--_shortCutsAllowed < 0)
+                            {
+                                continue;
+                            }
+                        }
+
+                        toVisit.Push((targetVertice, _shortCutsAllowed, visit.visited.Append(targetVertice).ToArray()));
+                    }
                 }
             }
 
