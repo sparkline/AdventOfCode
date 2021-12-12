@@ -4,7 +4,7 @@ namespace AdventOfCode2021.Solvers
 {
     public class Day12 : Solver
     {
-        public Day12() : base(2021, 12, CodeType.Original) { }
+        public Day12() : base(2021, 12) { }
 
         private Dictionary<string, HashSet<(string name, bool isUpper)>> edges = new Dictionary<string, HashSet<(string name, bool isUpper)>>();
 

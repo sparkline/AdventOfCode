@@ -6,7 +6,7 @@ namespace AdventOfCode2021.Solvers
     {
 
 
-        public Day08() : base(2021, 8, CodeType.Original)
+        public Day08() : base(2021, 8)
         {
         }
 

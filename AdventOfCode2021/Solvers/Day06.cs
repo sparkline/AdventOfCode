@@ -4,7 +4,7 @@ namespace AdventOfCode2021.Solvers
 {
     public class Day06 : Solver
     {
-        public Day06() : base(2021, 6, CodeType.Original) { }
+        public Day06() : base(2021, 6) { }
 
         protected override object PartA(string input)
         {

@@ -2,9 +2,9 @@
 
 namespace AdventOfCode2021.Solvers
 {
-    public class Day12Fast : Solver
+    public class Day12_1 : Solver
     {
-        public Day12Fast() : base(2021, 12, CodeType.Fastest) { }
+        public Day12_1() : base(2021, 12, 1, "DFS2") { }
 
         private Dictionary<string, HashSet<(string name, bool isUpper)>> edges = new Dictionary<string, HashSet<(string name, bool isUpper)>>();
 

@@ -118,7 +118,7 @@ namespace UnitTests
         [TestMethod]
         public void Day05faTest()
         {
-            Day05f solution = new Day05f();
+            Day05_1 solution = new Day05_1();
 
             var result = solution.TestPartAResult();
 
@@ -128,7 +128,7 @@ namespace UnitTests
         [TestMethod]
         public void Day05fbTest()
         {
-            Day05f solution = new Day05f();
+            Day05_1 solution = new Day05_1();
 
             var result = solution.TestPartBResult();
 
@@ -170,7 +170,7 @@ namespace UnitTests
         [TestMethod]
         public void Day07aBriefTest()
         {
-            Day07Brief solution = new Day07Brief();
+            Day07_1 solution = new Day07_1();
 
             var result = solution.TestPartAResult();
 
@@ -180,7 +180,7 @@ namespace UnitTests
         [TestMethod]
         public void Day07bBriefTest()
         {
-            Day07Brief solution = new Day07Brief();
+            Day07_1 solution = new Day07_1();
 
             var result = solution.TestPartBResult();
 
@@ -190,7 +190,7 @@ namespace UnitTests
         [TestMethod]
         public void Day07aFastestTest()
         {
-            Day07Fast solution = new Day07Fast();
+            Day07_2 solution = new Day07_2();
 
             var result = solution.TestPartAResult();
 
@@ -313,7 +313,7 @@ namespace UnitTests
         [TestMethod]
         public void Day12aFastTest()
         {
-            Day12Fast solution = new Day12Fast();
+            Day12_1 solution = new Day12_1();
 
             var result = solution.TestPartAResult();
 
@@ -323,7 +323,7 @@ namespace UnitTests
         [TestMethod]
         public void Day12bFastTest()
         {
-            Day12Fast solution = new Day12Fast();
+            Day12_1 solution = new Day12_1();
 
             var result = solution.TestPartBResult();
 

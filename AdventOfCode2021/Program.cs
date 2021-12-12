@@ -86,7 +86,7 @@ static IEnumerable<Solver> GetSolvers() =>
         .OfType<Solver>() // filter out nulls
         .OrderBy(d => d.Year)
         .ThenBy(d => d.Day)
-        .ThenBy(d => d.CodeType)
+        .ThenBy(d => d.iteration)
         .ToArray();
 
 IEnumerable<Solver> FilterSolvers(string[] args, IEnumerable<Solver> solvers)
@@ -96,8 +96,7 @@ IEnumerable<Solver> FilterSolvers(string[] args, IEnumerable<Solver> solvers)
         Console.WriteLine($"Usage: ");
         Console.WriteLine($"	Day:		-d xx");
         Console.WriteLine($"	Year:		-y xxxx");
-        Console.WriteLine($"	Original:	-o");
-        Console.WriteLine($"	Fastest:	-f");
+        Console.WriteLine($"	Iteration:	-i x");
     }
 
     if (Int32.TryParse(args.SkipWhile(d => d != "-d").Skip(1).FirstOrDefault(), out int day))
@@ -108,13 +107,9 @@ IEnumerable<Solver> FilterSolvers(string[] args, IEnumerable<Solver> solvers)
     {
         solvers = solvers.Where(s => s.Year == year);
     }
-    if (args.Contains("-o"))
+    if (Int32.TryParse(args.SkipWhile(d => d != "-i").Skip(1).FirstOrDefault(), out int iteration))
     {
-        solvers = solvers.Where(s => s.CodeType == CodeType.Original);
-    }
-    if (args.Contains("-f"))
-    {
-        solvers = solvers.Where(s => s.CodeType == CodeType.Fastest);
+        solvers = solvers.Where(s => s.iteration == iteration);
     }
 
     return solvers;

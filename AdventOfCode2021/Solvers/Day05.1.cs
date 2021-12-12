@@ -3,9 +3,9 @@ using System.Text.RegularExpressions;
 
 namespace AdventOfCode2021.Solvers
 {
-    public class Day05f : Solver
+    public class Day05_1 : Solver
     {
-        public Day05f() : base(2021, 5, CodeType.Fastest) { }
+        public Day05_1() : base(2021, 5, 1, "faster") { }
 
         protected override object PartA(string input)
         {

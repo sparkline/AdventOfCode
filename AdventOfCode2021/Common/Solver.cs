@@ -2,24 +2,21 @@
 
 namespace AdventOfCode2021.Common
 {
-    public enum CodeType
-    {
-        Original,
-        Fastest,
-        Brief,
-    }
     public abstract class Solver
     {
-        protected Solver(int year, int day, CodeType codeType)
+        protected Solver(int year, int day, int iteration = 0, string description = "")
         {
             this.Year = year;
             this.Day = day;
-            this.CodeType = codeType;
+            this.iteration = iteration;
+            this.description = description;
         }
 
         public int Day { get; protected set; }
         public int Year { get; protected set; }
-        public CodeType CodeType { get; protected set; }
+        public int iteration { get; protected set; }
+
+        public string description { get; protected set; }
 
         #region Part A
 
@@ -42,7 +39,8 @@ namespace AdventOfCode2021.Common
             string input = GetInput();
             var result = RunSafeA(input);
             stopWatch.Stop();
-            Console.WriteLine($"{Year}-{Day} Part A ({CodeType}) [{stopWatch.ElapsedMilliseconds:000000}ms]:    {result?.ToString()}");
+            string formattedDescription = string.IsNullOrWhiteSpace(description) ? "" : $" - {description}";
+            Console.WriteLine($"{Year}-{Day} Part A (Iteration {iteration}{formattedDescription}) [{stopWatch.ElapsedMilliseconds:000000}ms]:    {result?.ToString()}");
             return result ?? String.Empty;
         }
 
@@ -86,7 +84,8 @@ namespace AdventOfCode2021.Common
             string input = GetInput();
             var result = RunSafeB(input);
             stopWatch.Stop();
-            Console.WriteLine($"{Year}-{Day} Part B ({CodeType}) [{stopWatch.ElapsedMilliseconds:000000}ms]:    {result?.ToString()}");
+            string formattedDescription = string.IsNullOrWhiteSpace(description) ? "" : $" - {description}";
+            Console.WriteLine($"{Year}-{Day} Part B (Iteration {iteration}{formattedDescription}) [{stopWatch.ElapsedMilliseconds:000000}ms]:    {result?.ToString()}");
             return result ?? String.Empty;
         }
 

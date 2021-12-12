@@ -2,9 +2,9 @@
 
 namespace AdventOfCode2021.Solvers
 {
-    public class Day07Fast : Solver
+    public class Day07_2 : Solver
     {
-        public Day07Fast() : base(2021, 7, CodeType.Fastest) { }
+        public Day07_2() : base(2021, 7, 2, "faster") { }
 
         protected override object PartA(string input)
         {

@@ -4,7 +4,7 @@ namespace AdventOfCode2021.Solvers
 {
     public class Day10 : Solver
     {
-        public Day10() : base(2021, 10, CodeType.Original) { }
+        public Day10() : base(2021, 10) { }
         protected override object PartA(string input)
         {
             var lines = input.SplitOnNewline();
