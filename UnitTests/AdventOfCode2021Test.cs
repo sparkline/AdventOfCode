@@ -267,7 +267,7 @@ namespace UnitTests
 
             var result = solution.TestPartBResult();
 
-            Assert.AreEqual(288957, result);
+            Assert.AreEqual(288957L, result);
         }
 
         [TestMethod]
@@ -288,6 +288,46 @@ namespace UnitTests
             var result = solution.TestPartBResult();
 
             Assert.AreEqual(195, result);
+        }
+
+        [TestMethod]
+        public void Day12aTest()
+        {
+            Day12 solution = new Day12();
+
+            var result = solution.TestPartAResult();
+
+            Assert.AreEqual(226, result);
+        }
+
+        [TestMethod]
+        public void Day12bTest()
+        {
+            Day12 solution = new Day12();
+
+            var result = solution.TestPartBResult();
+
+            Assert.AreEqual(3509, result);
+        }
+
+        [TestMethod]
+        public void Day12aFastTest()
+        {
+            Day12Fast solution = new Day12Fast();
+
+            var result = solution.TestPartAResult();
+
+            Assert.AreEqual(226, result);
+        }
+
+        [TestMethod]
+        public void Day12bFastTest()
+        {
+            Day12Fast solution = new Day12Fast();
+
+            var result = solution.TestPartBResult();
+
+            Assert.AreEqual(3509, result);
         }
     }
 }
