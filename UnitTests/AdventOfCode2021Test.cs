@@ -116,7 +116,7 @@ namespace UnitTests
         }
 
         [TestMethod]
-        public void Day05faTest()
+        public void Day05_1aTest()
         {
             Day05_1 solution = new Day05_1();
 
@@ -126,7 +126,7 @@ namespace UnitTests
         }
 
         [TestMethod]
-        public void Day05fbTest()
+        public void Day05_1bTest()
         {
             Day05_1 solution = new Day05_1();
 
@@ -168,7 +168,7 @@ namespace UnitTests
         }
 
         [TestMethod]
-        public void Day07aBriefTest()
+        public void Day07_1aTest()
         {
             Day07_1 solution = new Day07_1();
 
@@ -178,7 +178,7 @@ namespace UnitTests
         }
 
         [TestMethod]
-        public void Day07bBriefTest()
+        public void Day07_1bTest()
         {
             Day07_1 solution = new Day07_1();
 
@@ -188,7 +188,7 @@ namespace UnitTests
         }
 
         [TestMethod]
-        public void Day07aFastestTest()
+        public void Day07_2aTest()
         {
             Day07_2 solution = new Day07_2();
 
@@ -311,7 +311,7 @@ namespace UnitTests
         }
 
         [TestMethod]
-        public void Day12aFastTest()
+        public void Day12_1aTest()
         {
             Day12_1 solution = new Day12_1();
 
@@ -321,9 +321,29 @@ namespace UnitTests
         }
 
         [TestMethod]
-        public void Day12bFastTest()
+        public void Day12_1bTest()
         {
             Day12_1 solution = new Day12_1();
+
+            var result = solution.TestPartBResult();
+
+            Assert.AreEqual(3509, result);
+        }
+
+        [TestMethod]
+        public void Day12_2aTest()
+        {
+            Day12_2 solution = new Day12_2();
+
+            var result = solution.TestPartAResult();
+
+            Assert.AreEqual(226, result);
+        }
+
+        [TestMethod]
+        public void Day12_2bTest()
+        {
+            Day12_2 solution = new Day12_2();
 
             var result = solution.TestPartBResult();
 
