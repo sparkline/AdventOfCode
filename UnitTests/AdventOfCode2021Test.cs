@@ -349,5 +349,18 @@ namespace UnitTests
 
             Assert.AreEqual(3509, result);
         }
+
+        [TestMethod]
+        public void Day13aTest()
+        {
+            Day13 solution = new Day13();
+
+            var result = solution.TestPartAResult();
+
+            Assert.AreEqual(17, result);
+        }
+
+        // No test for 13b
+
     }
 }
