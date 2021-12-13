@@ -1,4 +1,5 @@
 ﻿using AdventOfCode2021.Common;
+using System.Text;
 
 namespace AdventOfCode2021.Solvers
 {
@@ -51,18 +52,19 @@ namespace AdventOfCode2021.Solvers
 
             dots = Fold(dots, folds);
 
-            string answer = "\n";
+            StringBuilder answer = new StringBuilder();
+            answer.AppendLine();
             for (int y = 0; y <= dots.Max(d => d.y); y++)
             {
-                Console.Write("\t");
+                answer.Append("\t");
                 for (int x = 0; x <= dots.Max(d => d.x); x++)
                 {
-                    Console.Write(dots.Contains((x, y)) ? "#" : ".");
+                    answer.Append(dots.Contains((x, y)) ? "#" : ".");
                 }
-                Console.WriteLine();
+                answer.AppendLine();
             }
 
-            return 0;
+            return answer;
         }
     }
 }
