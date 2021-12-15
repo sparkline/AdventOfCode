@@ -362,5 +362,26 @@ namespace UnitTests
 
         // No test for 13b
 
+        [TestMethod]
+        public void Day14aTest()
+        {
+            Day14 solution = new Day14();
+
+            var result = solution.TestPartAResult();
+
+            Assert.AreEqual(1588L, result);
+        }
+
+        [TestMethod]
+        public void Day14bTest()
+        {
+            Day14 solution = new Day14();
+
+            var result = solution.TestPartBResult();
+
+            Assert.AreEqual(2188189693529L, result);
+        }
+
+
     }
 }
