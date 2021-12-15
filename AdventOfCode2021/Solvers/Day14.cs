@@ -1,9 +1,4 @@
 ﻿using AdventOfCode2021.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AdventOfCode2021.Solvers
 {
@@ -48,7 +43,7 @@ namespace AdventOfCode2021.Solvers
         {
             var lines = input.SplitOnNewline();
             string polymer = lines[0];
-            Dictionary<string,List<string>> children = new Dictionary<string,List<string>>();
+            Dictionary<string, List<string>> children = new Dictionary<string, List<string>>();
             Dictionary<string, Dictionary<char, long>> occurences = new Dictionary<string, Dictionary<char, long>>();
             Dictionary<string, Dictionary<char, long>> firstStep = new Dictionary<string, Dictionary<char, long>>();
 
@@ -71,7 +66,7 @@ namespace AdventOfCode2021.Solvers
             for (int i = 1; i < 40; i++)
             {
                 Dictionary<string, Dictionary<char, long>> newOccurences = new Dictionary<string, Dictionary<char, long>>();
-               
+
                 // Voodoo...
                 newOccurences = children.ToDictionary(c => c.Key,
                     c => c.Value.Select(childName => occurences[childName])
@@ -85,9 +80,9 @@ namespace AdventOfCode2021.Solvers
             Dictionary<char, long> zheResult = polymer.GroupBy(c => c).ToDictionary(c => c.Key, c => (long)c.Count());
 
             // Now we are going to resolve our iterated symbols
-            for (int i = 1; i< polymer.Length; i++)
+            for (int i = 1; i < polymer.Length; i++)
             {
-                string key = polymer.Substring(i-1,2);
+                string key = polymer.Substring(i - 1, 2);
 
                 // Add the iterations
                 zheResult = zheResult.Concat(occurences[key]).GroupBy(c => c.Key).ToDictionary(c => c.Key, c => c.Sum(b => b.Value));

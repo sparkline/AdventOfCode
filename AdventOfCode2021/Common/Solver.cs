@@ -40,7 +40,10 @@ namespace AdventOfCode2021.Common
             var result = RunSafeA(input);
             stopWatch.Stop();
             string formattedDescription = string.IsNullOrWhiteSpace(description) ? "" : $" - {description}";
-            Console.WriteLine($"{Year}-{Day} Part A (Iteration {iteration}{formattedDescription}) [{stopWatch.ElapsedMilliseconds:000000}ms]:    {result?.ToString()}");
+            Console.WriteLine($"[{stopWatch.ElapsedMilliseconds:000000}ms] {Year}-{Day} Part A - Iteration {iteration}{formattedDescription}");
+            Console.WriteLine();
+            Console.WriteLine(result?.ToString());
+            Console.WriteLine();
             return result ?? String.Empty;
         }
 
@@ -85,7 +88,10 @@ namespace AdventOfCode2021.Common
             var result = RunSafeB(input);
             stopWatch.Stop();
             string formattedDescription = string.IsNullOrWhiteSpace(description) ? "" : $" - {description}";
-            Console.WriteLine($"{Year}-{Day} Part B (Iteration {iteration}{formattedDescription}) [{stopWatch.ElapsedMilliseconds:000000}ms]:    {result?.ToString()}");
+            Console.WriteLine($"[{stopWatch.ElapsedMilliseconds:000000}ms] {Year}-{Day} Part B - Iteration {iteration}{formattedDescription}");
+            Console.WriteLine();
+            Console.WriteLine(result?.ToString());
+            Console.WriteLine();
             return result ?? String.Empty;
         }
 
