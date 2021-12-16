@@ -4,7 +4,7 @@ namespace AdventOfCode2021.Solvers
 {
     public class Day15_2 : Solver
     {
-        public Day15_2() : base(2021, 15, 1, "Okay, okay, A* it is") { }
+        public Day15_2() : base(2021, 15, 2, "Okay, okay, A* it is") { }
 
         protected override object PartA(string input)
         {
@@ -60,6 +60,7 @@ namespace AdventOfCode2021.Solvers
                         costToEnd[neighbour] = minimumCost + manhattan(neighbour, N);
                         if (!inQueue.Contains(neighbour))
                         {
+                            inQueue.Append(neighbour);
                             toExplore.Enqueue(neighbour, costToEnd[neighbour]);
                         }
                     }
