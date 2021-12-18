@@ -50,18 +50,13 @@ namespace AdventOfCode2021.Common
         public object TestPartAResult()
         {
             string input = GetTestInput();
+            return TestPartAResult(input);
+        }
+        public object TestPartAResult(string input)
+        {
             return RunSafeA(input);
         }
 
-        #region calling functions
-
-        private string FetchInputFile()
-        {
-            string inputFile = $"Input.{Day:00}";
-            return ReadFileContents(inputFile);
-        }
-
-        #endregion
         #endregion
 
 
@@ -98,6 +93,11 @@ namespace AdventOfCode2021.Common
         public object TestPartBResult()
         {
             string input = GetTestInput();
+            return TestPartBResult(input);
+        }
+
+        public object TestPartBResult(string input)
+        {
             return RunSafeB(input);
         }
 

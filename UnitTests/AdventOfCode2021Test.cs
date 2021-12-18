@@ -431,5 +431,305 @@ namespace UnitTests
 
             Assert.AreEqual(315, result);
         }
+
+        [TestMethod]
+        public void Day16a1Test()
+        {
+            Day16 solution = new Day16();
+
+            var result = solution.TestPartAResult(@"8A004A801A8002F478");
+
+            Assert.AreEqual(16, result);
+        }
+
+        [TestMethod]
+        public void Day16a2Test()
+        {
+            Day16 solution = new Day16();
+
+            var result = solution.TestPartAResult(@"620080001611562C8802118E34");
+
+            Assert.AreEqual(12, result);
+        }
+
+        [TestMethod]
+        public void Day16a3Test()
+        {
+            Day16 solution = new Day16();
+
+            var result = solution.TestPartAResult(@"C0015000016115A2E0802F182340");
+
+            Assert.AreEqual(23, result);
+        }
+
+        [TestMethod]
+        public void Day16a4Test()
+        {
+            Day16 solution = new Day16();
+
+            var result = solution.TestPartAResult(@"A0016C880162017C3686B18A3D4780");
+
+            Assert.AreEqual(31, result);
+        }
+
+        [TestMethod]
+        public void Day16b1Test()
+        {
+            Day16 solution = new Day16();
+
+            var result = solution.TestPartBResult(@"C200B40A82");
+
+            Assert.AreEqual(3L, result);
+        }
+
+        [TestMethod]
+        public void Day16b2Test()
+        {
+            Day16 solution = new Day16();
+
+            var result = solution.TestPartBResult(@"04005AC33890");
+
+            Assert.AreEqual(54L, result);
+        }
+
+        [TestMethod]
+        public void Day16b3Test()
+        {
+            Day16 solution = new Day16();
+
+            var result = solution.TestPartBResult(@"880086C3E88112");
+
+            Assert.AreEqual(7L, result);
+        }
+
+        [TestMethod]
+        public void Day16b4Test()
+        {
+            Day16 solution = new Day16();
+
+            var result = solution.TestPartBResult(@"CE00C43D881120");
+
+            Assert.AreEqual(9L, result);
+        }
+
+        [TestMethod]
+        public void Day16b5Test()
+        {
+            Day16 solution = new Day16();
+
+            var result = solution.TestPartBResult(@"D8005AC2A8F0");
+
+            Assert.AreEqual(1L, result);
+        }
+
+        [TestMethod]
+        public void Day16b6Test()
+        {
+            Day16 solution = new Day16();
+
+            var result = solution.TestPartBResult(@"F600BC2D8F");
+
+            Assert.AreEqual(0L, result);
+        }
+
+        [TestMethod]
+        public void Day16b7Test()
+        {
+            Day16 solution = new Day16();
+
+            var result = solution.TestPartBResult(@"9C005AC2F8F0");
+
+            Assert.AreEqual(0L, result);
+        }
+
+        [TestMethod]
+        public void Day16b8Test()
+        {
+            Day16 solution = new Day16();
+
+            var result = solution.TestPartBResult(@"9C0141080250320F1802104A08");
+
+            Assert.AreEqual(1L, result);
+        }
+
+        [TestMethod]
+        public void Day17aTest()
+        {
+            Day17 solution = new Day17();
+
+            var result = solution.TestPartAResult();
+
+            Assert.AreEqual(null, result);
+        }
+
+        [TestMethod]
+        public void Day17bTest()
+        {
+            Day17 solution = new Day17();
+
+            var result = solution.TestPartBResult();
+
+            Assert.AreEqual(null, result);
+        }
+
+        [TestMethod]
+        public void Day18aTest()
+        {
+            Day18 solution = new Day18();
+
+            var result = solution.TestPartAResult();
+
+            Assert.AreEqual(null, result);
+        }
+
+        [TestMethod]
+        public void Day18bTest()
+        {
+            Day18 solution = new Day18();
+
+            var result = solution.TestPartBResult();
+
+            Assert.AreEqual(null, result);
+        }
+
+        [TestMethod]
+        public void Day19aTest()
+        {
+            Day19 solution = new Day19();
+
+            var result = solution.TestPartAResult();
+
+            Assert.AreEqual(null, result);
+        }
+
+        [TestMethod]
+        public void Day19bTest()
+        {
+            Day19 solution = new Day19();
+
+            var result = solution.TestPartBResult();
+
+            Assert.AreEqual(null, result);
+        }
+
+        [TestMethod]
+        public void Day20aTest()
+        {
+            Day20 solution = new Day20();
+
+            var result = solution.TestPartAResult();
+
+            Assert.AreEqual(null, result);
+        }
+
+        [TestMethod]
+        public void Day20bTest()
+        {
+            Day20 solution = new Day20();
+
+            var result = solution.TestPartBResult();
+
+            Assert.AreEqual(null, result);
+        }
+
+        [TestMethod]
+        public void Day21aTest()
+        {
+            Day21 solution = new Day21();
+
+            var result = solution.TestPartAResult();
+
+            Assert.AreEqual(null, result);
+        }
+
+        [TestMethod]
+        public void Day21bTest()
+        {
+            Day21 solution = new Day21();
+
+            var result = solution.TestPartBResult();
+
+            Assert.AreEqual(null, result);
+        }
+
+        [TestMethod]
+        public void Day22aTest()
+        {
+            Day22 solution = new Day22();
+
+            var result = solution.TestPartAResult();
+
+            Assert.AreEqual(null, result);
+        }
+
+        [TestMethod]
+        public void Day22bTest()
+        {
+            Day22 solution = new Day22();
+
+            var result = solution.TestPartBResult();
+
+            Assert.AreEqual(null, result);
+        }
+
+        [TestMethod]
+        public void Day23aTest()
+        {
+            Day23 solution = new Day23();
+
+            var result = solution.TestPartAResult();
+
+            Assert.AreEqual(null, result);
+        }
+
+        [TestMethod]
+        public void Day23bTest()
+        {
+            Day23 solution = new Day23();
+
+            var result = solution.TestPartBResult();
+
+            Assert.AreEqual(null, result);
+        }
+
+        [TestMethod]
+        public void Day24aTest()
+        {
+            Day24 solution = new Day24();
+
+            var result = solution.TestPartAResult();
+
+            Assert.AreEqual(null, result);
+        }
+
+        [TestMethod]
+        public void Day24bTest()
+        {
+            Day24 solution = new Day24();
+
+            var result = solution.TestPartBResult();
+
+            Assert.AreEqual(null, result);
+        }
+
+        [TestMethod]
+        public void Day25aTest()
+        {
+            Day25 solution = new Day25();
+
+            var result = solution.TestPartAResult();
+
+            Assert.AreEqual(null, result);
+        }
+
+        [TestMethod]
+        public void Day25bTest()
+        {
+            Day25 solution = new Day25();
+
+            var result = solution.TestPartBResult();
+
+            Assert.AreEqual(null, result);
+        }
     }
 }
