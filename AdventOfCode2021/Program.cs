@@ -10,6 +10,7 @@ using System.Reflection;
 
 HttpClient httpClient;
 IEnumerable<Solver> solvers = GetSolvers();
+bool testMode;
 solvers = FilterSolvers(args, solvers);
 FetchInput(solvers);
 Solve(solvers);
@@ -21,8 +22,16 @@ void Solve(IEnumerable<Solver> solvers)
 {
     foreach (Solver solver in solvers)
     {
-        var solutionA = solver.PartA();
-        var solutionB = solver.PartB();
+        if (testMode)
+        {
+            var solutionA = solver.TestPartAResult();
+            var solutionB = solver.TestPartBResult();
+        }
+        else
+        {
+            var solutionA = solver.PartA();
+            var solutionB = solver.PartB();
+        }
     }
 }
 
@@ -111,6 +120,7 @@ IEnumerable<Solver> FilterSolvers(string[] args, IEnumerable<Solver> solvers)
     {
         solvers = solvers.Where(s => s.iteration == iteration);
     }
+    testMode = args.Contains("-t");
 
     return solvers;
 }

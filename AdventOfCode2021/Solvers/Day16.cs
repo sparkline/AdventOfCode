@@ -1,9 +1,5 @@
 ﻿using AdventOfCode2021.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace AdventOfCode2021.Solvers
 {
@@ -111,7 +107,7 @@ namespace AdventOfCode2021.Solvers
                         break;
                     case 1:
                         int packetCount = ReadNumber(ref binaryString, 11);
-                        for(int i = 0; i < packetCount; i++)
+                        for (int i = 0; i < packetCount; i++)
                         {
                             Packet child = new Packet(ref binaryString);
                             children.Add(child);

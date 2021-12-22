@@ -1,10 +1,5 @@
 ﻿using AdventOfCode2021.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace AdventOfCode2021.Solvers
 {
@@ -52,7 +47,7 @@ namespace AdventOfCode2021.Solvers
             // first hit in the box
             int maxVx = Math.Abs(maxX);
             // dead in the box - minX = minVx * (minVx+1) * 0.5
-            int minVx = (int)Math.Floor(Math.Sqrt((double)minX*2 - 0.25) - 0.5);
+            int minVx = (int)Math.Floor(Math.Sqrt((double)minX * 2 - 0.25) - 0.5);
 
             int hits = 0;
             for (int vx = minVx; vx <= maxVx; vx++)
@@ -65,7 +60,7 @@ namespace AdventOfCode2021.Solvers
                     int _vy = vy;
                     while (x <= maxX && y >= minY)
                     {
-                        x += _vx;y += _vy;
+                        x += _vx; y += _vy;
 
                         if (x <= maxX && y >= minY && x >= minX && y <= maxY)
                         {

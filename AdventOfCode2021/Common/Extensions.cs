@@ -58,6 +58,14 @@
         {
             return string.Concat(input.SelectMany(c => c.Hex2Bin()));
         }
+
+        public static IEnumerable<T> IntersectWithDuplicates<T>(this IEnumerable<T> input, IEnumerable<T> other)
+        {
+            // use as tokens
+            List<T> available = new List<T>(other);
+            // Add if we have a token
+            return input.Where(c => available.Remove(c));
+        }
     }
 
 }

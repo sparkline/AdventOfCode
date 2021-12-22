@@ -105,13 +105,15 @@ namespace AdventOfCode2021.Common
 
         protected string GetInput()
         {
-            string input = ReadFileContents($"Input.{Day:00}");
+            string dir = @"C:\Users\jeroenvonk\source\repos\AdventOfCode\AdventOfCode2021\Data\";
+            string input = ReadFileContents($"{dir}Input.{Day:00}");
             return input;
         }
 
         protected string GetTestInput()
         {
-            string input = ReadFileContents($"Test.{Day:00}.in");
+            string dir = @"C:\Users\jeroenvonk\source\repos\AdventOfCode\UnitTests\Data\";
+            string input = ReadFileContents($"{dir}Test.{Day:00}.in");
             return input;
         }
 
