@@ -619,7 +619,7 @@ namespace UnitTests
 
             var result = solution.TestPartAResult();
 
-            Assert.AreEqual(null, result);
+            Assert.AreEqual(35, result);
         }
 
         [TestMethod]
@@ -629,7 +629,7 @@ namespace UnitTests
 
             var result = solution.TestPartBResult();
 
-            Assert.AreEqual(null, result);
+            Assert.AreEqual(3351, result);
         }
 
         [TestMethod]
