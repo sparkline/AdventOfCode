@@ -8,7 +8,7 @@ namespace AdventOfCode2021.Solvers
         protected override object PartA(string input)
         {
             List<Universe> mismatchedUniverses = readScanners(input);
-
+            StartSW();
             var result = FindTheUniverse(mismatchedUniverses.First(), mismatchedUniverses.Skip(1).ToList());
             var beaconList = result.beacons.Select(b => b.position).Distinct().ToList();
 
@@ -74,8 +74,7 @@ namespace AdventOfCode2021.Solvers
 
             return null;
         }
-
-        private Instruction? FindInstruction(List<(Coord referenceBeacon, Coord candidateBeacon)> beaconPairs)
+        private Instruction? FindInstructionSlow(List<(Coord referenceBeacon, Coord candidateBeacon)> beaconPairs)
         {
             var anchor = beaconPairs[0];
             List<Coord> reference = beaconPairs.Select(b => b.referenceBeacon).ToList();
@@ -106,20 +105,24 @@ namespace AdventOfCode2021.Solvers
 
 
             return null;
+        }
 
+        private Instruction? FindInstruction(List<(Coord referenceBeacon, Coord candidateBeacon)> beaconPairs)
+        {
+            var anchor = beaconPairs[0];
+            List<Coord> referenceBeacons = beaconPairs.Select(b => b.referenceBeacon).ToList();
+            List<Coord> extraBeacons = beaconPairs.Select(b => b.candidateBeacon).ToList();
 
-            /* Faster implementation, with some quircks..
-            List<int> xRef = beaconPairs.Select(c => c) 
-            referenceBeacons.Select(c => c.position.x - referenceBeacons.Min(c => c.position.x)).OrderBy(x => x).ToList();
-            List<int> yRef = referenceBeacons.Select(c => c.position.y - referenceBeacons.Min(c => c.position.y)).OrderBy(x => x).ToList();
-            List<int> zRef = referenceBeacons.Select(c => c.position.z - referenceBeacons.Min(c => c.position.z)).OrderBy(x => x).ToList();
+            List<int> xRef = referenceBeacons.Select(c => c.position.x - referenceBeacons.Min(c => c.position.x)).ToList();
+            List<int> yRef = referenceBeacons.Select(c => c.position.y - referenceBeacons.Min(c => c.position.y)).ToList();
+            List<int> zRef = referenceBeacons.Select(c => c.position.z - referenceBeacons.Min(c => c.position.z)).ToList();
 
-            List<int> x = extraBeacons.Select(c => c.position.x - extraBeacons.Min(c => c.position.x)).OrderBy(x => x).ToList();
-            List<int> y = extraBeacons.Select(c => c.position.y - extraBeacons.Min(c => c.position.y)).OrderBy(x => x).ToList();
-            List<int> z = extraBeacons.Select(c => c.position.z - extraBeacons.Min(c => c.position.z)).OrderBy(x => x).ToList();
-            List<int> xInverted = extraBeacons.Select(c => Math.Abs(c.position.x - extraBeacons.Max(c => c.position.x))).OrderBy(x => x).ToList();
-            List<int> yInverted = extraBeacons.Select(c => Math.Abs(c.position.y - extraBeacons.Max(c => c.position.y))).OrderBy(x => x).ToList();
-            List<int> zInverted = extraBeacons.Select(c => Math.Abs(c.position.z - extraBeacons.Max(c => c.position.z))).OrderBy(x => x).ToList();
+            List<int> x = extraBeacons.Select(c => c.position.x - extraBeacons.Min(c => c.position.x)).ToList();
+            List<int> y = extraBeacons.Select(c => c.position.y - extraBeacons.Min(c => c.position.y)).ToList();
+            List<int> z = extraBeacons.Select(c => c.position.z - extraBeacons.Min(c => c.position.z)).ToList();
+            List<int> xInverted = extraBeacons.Select(c => Math.Abs(c.position.x - extraBeacons.Max(c => c.position.x))).ToList();
+            List<int> yInverted = extraBeacons.Select(c => Math.Abs(c.position.y - extraBeacons.Max(c => c.position.y))).ToList();
+            List<int> zInverted = extraBeacons.Select(c => Math.Abs(c.position.z - extraBeacons.Max(c => c.position.z))).ToList();
 
             Instruction.Face face = Instruction.Face.Forward;
             Instruction.Rotation rotation = Instruction.Rotation._0;
@@ -128,7 +131,7 @@ namespace AdventOfCode2021.Solvers
             foreach (Instruction.Face tryFace in Enum.GetValues(typeof(Instruction.Face)))
             {
                 (List<int> x, List<int> y, List<int> z) result = Transform(new Instruction(rotation, tryFace), x, y, z, xInverted, yInverted, zInverted);
-                if (xRef.Intersect(result.x).Count() >= 12)
+                if (xRef.IntersectWithDuplicates(result.x).Count() >= 12)
                 {
                     foundFace = true;
                     face = tryFace;
@@ -137,14 +140,15 @@ namespace AdventOfCode2021.Solvers
             }
             if (!foundFace)
             {
-                return FindInstructionSlow(referenceBeacons, extraBeacons);
+                Console.WriteLine("Weird...");
+                return FindInstructionSlow(beaconPairs);
             }
 
             bool foundRotation = false;
             foreach (Instruction.Rotation tryRotation in Enum.GetValues(typeof(Instruction.Rotation)))
             {
                 (List<int> x, List<int> y, List<int> z) result = Transform(new Instruction(tryRotation, face), x, y, z, xInverted, yInverted, zInverted);
-                if (xRef.Intersect(result.x).Count() >= 12 && yRef.Intersect(result.y).Count() >= 12 && zRef.Intersect(result.z).Count() >= 12)
+                if (xRef.IntersectWithDuplicates(result.x).Count() >= 12 && yRef.IntersectWithDuplicates(result.y).Count() >= 12 && zRef.IntersectWithDuplicates(result.z).Count() >= 12)
                 {
                     foundRotation = true;
                     rotation = tryRotation;
@@ -153,17 +157,17 @@ namespace AdventOfCode2021.Solvers
             }
             if (!foundRotation)
             {
-                return FindInstructionSlow(referenceBeacons, extraBeacons);
+                Console.WriteLine("Weird...");
+                return FindInstructionSlow(beaconPairs);
             }
 
-            var referenceCorner = referenceBeacons.Select(b => b.position).OrderBy(b => b.x).ThenBy(b => b.y).ThenBy(b => b.z).First();
-            var extraCorner = extraBeacons.Select(b => Transform(new Instruction(rotation, face), b)).OrderBy(b => b.x).ThenBy(b => b.y).ThenBy(b => b.z).First();
+            (Coord referenceCorner, Coord extraCorner) = beaconPairs.First();
+            extraCorner = TransformAndMove(new Instruction(rotation, face), extraCorner);
 
-            int dx = referenceCorner.x - extraCorner.x;
-            int dy = referenceCorner.y - extraCorner.y;
-            int dz = referenceCorner.z - extraCorner.z;
+            int dx = referenceCorner.position.x - extraCorner.position.x;
+            int dy = referenceCorner.position.y - extraCorner.position.y;
+            int dz = referenceCorner.position.z - extraCorner.position.z;
             return new Instruction(rotation, face, dx, dy, dz);
-            */
 
         }
 
@@ -178,65 +182,6 @@ namespace AdventOfCode2021.Solvers
                 + Math.Abs(referencePosition.y - otherPosition.y)
                 + Math.Abs(referencePosition.z - otherPosition.z);
         }
-        /*
-        private Instruction? FindInstruction(IEnumerable<Coord> referenceBeacons, IEnumerable<Coord> extraBeacons)
-        {
-            List<int> xRef = referenceBeacons.Select(c => c.position.x - referenceBeacons.Min(c => c.position.x)).OrderBy(x => x).ToList();
-            List<int> yRef = referenceBeacons.Select(c => c.position.y - referenceBeacons.Min(c => c.position.y)).OrderBy(x => x).ToList();
-            List<int> zRef = referenceBeacons.Select(c => c.position.z - referenceBeacons.Min(c => c.position.z)).OrderBy(x => x).ToList();
-
-            List<int> x = extraBeacons.Select(c => c.position.x - extraBeacons.Min(c => c.position.x)).OrderBy(x => x).ToList();
-            List<int> y = extraBeacons.Select(c => c.position.y - extraBeacons.Min(c => c.position.y)).OrderBy(x => x).ToList();
-            List<int> z = extraBeacons.Select(c => c.position.z - extraBeacons.Min(c => c.position.z)).OrderBy(x => x).ToList();
-            List<int> xInverted = extraBeacons.Select(c => Math.Abs(c.position.x - extraBeacons.Max(c => c.position.x))).OrderBy(x => x).ToList();
-            List<int> yInverted = extraBeacons.Select(c => Math.Abs(c.position.y - extraBeacons.Max(c => c.position.y))).OrderBy(x => x).ToList();
-            List<int> zInverted = extraBeacons.Select(c => Math.Abs(c.position.z - extraBeacons.Max(c => c.position.z))).OrderBy(x => x).ToList();
-
-            Instruction.Face face = Instruction.Face.Forward;
-            Instruction.Rotation rotation = Instruction.Rotation._0;
-
-            bool foundFace = false;
-            foreach (Instruction.Face tryFace in Enum.GetValues(typeof(Instruction.Face)))
-            {
-                (List<int> x, List<int> y, List<int> z) result = Transform(new Instruction(rotation, tryFace), x, y, z, xInverted, yInverted, zInverted);
-                if (xRef.Intersect(result.x).Count() >= 12)
-                {
-                    foundFace = true;
-                    face = tryFace;
-                    break;
-                }
-            }
-            if (!foundFace)
-            {
-                return FindInstructionSlow(referenceBeacons, extraBeacons);
-            }
-
-            bool foundRotation = false;
-            foreach (Instruction.Rotation tryRotation in Enum.GetValues(typeof(Instruction.Rotation)))
-            {
-                (List<int> x, List<int> y, List<int> z) result = Transform(new Instruction(tryRotation, face), x, y, z, xInverted, yInverted, zInverted);
-                if (xRef.Intersect(result.x).Count() >= 12 && yRef.Intersect(result.y).Count() >= 12 && zRef.Intersect(result.z).Count() >= 12)
-                {
-                    foundRotation = true;
-                    rotation = tryRotation;
-                    break;
-                }
-            }
-            if (!foundRotation)
-            {
-                return FindInstructionSlow(referenceBeacons, extraBeacons);
-            }
-
-            var referenceCorner = referenceBeacons.Select(b => b.position).OrderBy(b => b.x).ThenBy(b => b.y).ThenBy(b => b.z).First();
-            var extraCorner = extraBeacons.Select(b => Transform(new Instruction(rotation, face), b)).OrderBy(b => b.x).ThenBy(b => b.y).ThenBy(b => b.z).First();
-
-            int dx = referenceCorner.x - extraCorner.x;
-            int dy = referenceCorner.y - extraCorner.y;
-            int dz = referenceCorner.z - extraCorner.z;
-            return new Instruction(rotation, face, dx, dy, dz);
-
-        }
-        */
         private List<Universe> readScanners(string input)
         {
             List<Universe> scanners = new List<Universe>();

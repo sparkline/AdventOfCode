@@ -12,6 +12,7 @@ namespace AdventOfCode2021.Common
             this.description = description;
         }
 
+        private Stopwatch stopwatch = new Stopwatch();
         public int Day { get; protected set; }
         public int Year { get; protected set; }
         public int iteration { get; protected set; }
@@ -34,13 +35,12 @@ namespace AdventOfCode2021.Common
         }
         public object PartA()
         {
-            var stopWatch = new Stopwatch();
-            stopWatch.Start();
             string input = GetInput();
+            StartSW();
             var result = RunSafeA(input);
-            stopWatch.Stop();
+            stopwatch.Stop();
             string formattedDescription = string.IsNullOrWhiteSpace(description) ? "" : $" - {description}";
-            Console.WriteLine($"[{stopWatch.ElapsedMilliseconds:000000}ms] {Year}-{Day} Part A - Iteration {iteration}{formattedDescription}");
+            Console.WriteLine($"[{stopwatch.ElapsedMilliseconds:000000}ms] {Year}-{Day} Part A - Iteration {iteration}{formattedDescription}");
             Console.WriteLine();
             Console.WriteLine(result?.ToString());
             Console.WriteLine();
@@ -77,13 +77,12 @@ namespace AdventOfCode2021.Common
 
         public object PartB()
         {
-            var stopWatch = new Stopwatch();
-            stopWatch.Start();
             string input = GetInput();
+            StartSW();
             var result = RunSafeB(input);
-            stopWatch.Stop();
+            stopwatch.Stop();
             string formattedDescription = string.IsNullOrWhiteSpace(description) ? "" : $" - {description}";
-            Console.WriteLine($"[{stopWatch.ElapsedMilliseconds:000000}ms] {Year}-{Day} Part B - Iteration {iteration}{formattedDescription}");
+            Console.WriteLine($"[{stopwatch.ElapsedMilliseconds:000000}ms] {Year}-{Day} Part B - Iteration {iteration}{formattedDescription}");
             Console.WriteLine();
             Console.WriteLine(result?.ToString());
             Console.WriteLine();
@@ -134,6 +133,11 @@ namespace AdventOfCode2021.Common
                 Console.WriteLine($"Could not find file '{fileName}'");
                 throw fnfEx;
             }
+        }
+
+        protected void StartSW()
+        {
+            stopwatch.Restart();
         }
 
     }

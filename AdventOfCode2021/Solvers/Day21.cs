@@ -57,6 +57,7 @@ namespace AdventOfCode2021.Solvers
             var lines = input.SplitOnNewline();
             int playerOnePosition = int.Parse(lines[0].Split(":")[1]);
             int playerTwoPosition = int.Parse(lines[1].Split(":")[1]);
+            StartSW();
 
             Dictionary<int, int> rollFreqs = Enumerable.Range(1, 3)
                 .SelectMany(firstRoll => Enumerable.Range(1, 3), (firstDie, secondDie) => firstDie + secondDie)

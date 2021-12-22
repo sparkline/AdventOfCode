@@ -11,6 +11,7 @@ namespace AdventOfCode2021.Solvers
             List<string> lines = input.SplitOnNewline();
             List<Cuboid> cuboids = lines.Select(line => Cuboid.GetCuboid(line)).Where(c => c.ApplyLimit(50)).ToList();
             List<Cuboid> theWholeShebang = new List<Cuboid>();
+            StartSW();
             foreach (Cuboid other in cuboids)
             {
                 // make some room
@@ -27,6 +28,7 @@ namespace AdventOfCode2021.Solvers
             List<string> lines = input.SplitOnNewline();
             List<Cuboid> cuboids = lines.Select(line => Cuboid.GetCuboid(line)).Where(c => c != null).ToList();
             LinkedList<Cuboid> theWholeShebang = new LinkedList<Cuboid>();
+            StartSW();
             foreach (Cuboid other in cuboids)
             {
                 var node = theWholeShebang.First;
