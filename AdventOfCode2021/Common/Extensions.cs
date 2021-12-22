@@ -66,6 +66,15 @@
             // Add if we have a token
             return input.Where(c => available.Remove(c));
         }
+
+        public static IEnumerable<TKey> GetNonNull<TSource, TKey>(this IEnumerable<TSource> source, Func<TSource, TKey?> keySelector)
+            where TKey : struct
+        {
+            return source.Select(keySelector)
+                .Where(x => x.HasValue)
+                .Select(x => x.Value);
+        }
+
     }
 
 }

@@ -2,6 +2,7 @@ using AdventOfCode2021.Solvers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.IO;
+using System.Linq;
 
 namespace UnitTests
 {
@@ -653,13 +654,35 @@ namespace UnitTests
         }
 
         [TestMethod]
+        public void Day22aTest1()
+        {
+            Day22 solution = new Day22();
+
+            Day22.Cuboid cuboid1 = new Day22.Cuboid(0, 10, 0, 20, 0, 30, Day22.Cuboid.State.ON);
+            Day22.Cuboid cuboid2 = new Day22.Cuboid(0, 10, 0, 20, 0, 30, Day22.Cuboid.State.ON);
+            Day22.Cuboid col = new Day22.Cuboid(3, 7, 3, 17, 3, 27, Day22.Cuboid.State.ON);
+
+            var collided = cuboid2.Collide(col);
+            var collided2 = collided.SelectMany(a => a.Collide(col));
+
+            long c4 = col.blocks;
+            long c1 = cuboid1.blocks;
+            long c2 = collided.Sum(c => c.blocks);
+            long c3 = collided2.Sum(c => c.blocks);
+            Assert.AreEqual(11 * 21 * 31L, c1);
+            Assert.AreEqual(c1, c2 + c4);
+            Assert.AreEqual(c2, c3);
+        }
+
+        [TestMethod]
         public void Day22aTest()
         {
             Day22 solution = new Day22();
 
             var result = solution.TestPartAResult();
-
-            Assert.AreEqual(null, result);
+            //590784
+            //474140
+            Assert.AreEqual(474140L, result);
         }
 
         [TestMethod]
@@ -669,7 +692,7 @@ namespace UnitTests
 
             var result = solution.TestPartBResult();
 
-            Assert.AreEqual(null, result);
+            Assert.AreEqual(2758514936282235L, result);
         }
 
         [TestMethod]

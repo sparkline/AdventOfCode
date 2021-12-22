@@ -5,7 +5,7 @@ namespace AdventOfCode2021.Solvers
     public class Day21 : Solver
     {
         public Day21() : base(2021, 21) { }
-        
+
         /*
          * Given deterministic dice with d rolls per turn
          * With p players
@@ -15,7 +15,7 @@ namespace AdventOfCode2021.Solvers
          * 
          * 
          */
-        
+
         protected override object PartA(string input)
         {
             var lines = input.SplitOnNewline();
@@ -87,15 +87,15 @@ namespace AdventOfCode2021.Solvers
                     {
                         win1 += play.evenTurn ? play.p1Universes * dieFreq : 0;
                         win2 += play.evenTurn ? 0 : play.p2Universes * dieFreq;
-                    } 
+                    }
                     else
                     {
                         if (play.evenTurn)
                         {
-                            playsLeft.Push((p1Score: newScore, p1Position: newPosition, p1Universes: play.p1Universes * dieFreq, 
-                                p2Score: play.p2Score, p2Position: play.p2Position, p2Universes: play.p2Universes * dieFreq, 
+                            playsLeft.Push((p1Score: newScore, p1Position: newPosition, p1Universes: play.p1Universes * dieFreq,
+                                p2Score: play.p2Score, p2Position: play.p2Position, p2Universes: play.p2Universes * dieFreq,
                                 evenTurn: !play.evenTurn));
-                        } 
+                        }
                         else
                         {
                             playsLeft.Push((p1Score: play.p1Score, p1Position: play.p1Position, p1Universes: play.p1Universes * dieFreq,
