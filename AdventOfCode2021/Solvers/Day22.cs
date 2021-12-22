@@ -26,15 +26,23 @@ namespace AdventOfCode2021.Solvers
         {
             List<string> lines = input.SplitOnNewline();
             List<Cuboid> cuboids = lines.Select(line => Cuboid.GetCuboid(line)).Where(c => c != null).ToList();
-            List<Cuboid> theWholeShebang = new List<Cuboid>();
+            LinkedList<Cuboid> theWholeShebang = new LinkedList<Cuboid>();
             foreach (Cuboid other in cuboids)
             {
-                // make some room
-                theWholeShebang = theWholeShebang.SelectMany(cuboid => cuboid.Collide(other)).ToList();
-                // add it
-                theWholeShebang.Add(other);
+                var node = theWholeShebang.First;
+                while (node != null)
+                {
+                    bool hit = !node.Value.NoTouchie(other);
+                    if (hit)
+                    {
+                        var exploded = node.Value.Collide(other);
+                        exploded.ForEach(c => theWholeShebang.AddFirst(c));
+                        theWholeShebang.Remove(node);
+                    }
+                    node = node.Next;
+                }
+                theWholeShebang.AddFirst(other);
             }
-
             return theWholeShebang.Where(c => c.isOn()).Sum(c => c.blocks);
         }
 
@@ -67,6 +75,7 @@ namespace AdventOfCode2021.Solvers
                 int z1 = int.Parse(matches[4].Value);
                 int z2 = int.Parse(matches[5].Value);
                 State state = line.StartsWith("on") ? State.ON : State.OFF;
+
                 return new Cuboid(x1, x2, y1, y2, z1, z2, state);
             }
 
@@ -112,7 +121,7 @@ namespace AdventOfCode2021.Solvers
             public List<Cuboid> Collide(Cuboid other)
             {
                 List<Cuboid> result = new List<Cuboid>();
-                if (other.x2 < x1 || other.x1 > x2 || other.y2 < y1 || other.y1 > y2 || other.z2 < z1 || other.z1 > z2)
+                if (NoTouchie(other))
                 {
                     // No hit
                     result.Add(this);
@@ -187,6 +196,11 @@ namespace AdventOfCode2021.Solvers
                 }
 
                 return result;
+            }
+
+            public bool NoTouchie(Cuboid other)
+            {
+                return other.x2 < x1 || other.x1 > x2 || other.y2 < y1 || other.y1 > y2 || other.z2 < z1 || other.z1 > z2;
             }
 
             public override string ToString()
