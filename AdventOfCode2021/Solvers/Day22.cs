@@ -9,7 +9,7 @@ namespace AdventOfCode2021.Solvers
         protected override object PartA(string input)
         {
             List<string> lines = input.SplitOnNewline();
-            List<Cuboid> cuboids = lines.Select(line => Cuboid.GetCuboid(line, 50)).Where(c => c != null).ToList();
+            List<Cuboid> cuboids = lines.Select(line => Cuboid.GetCuboid(line)).Where(c => c.ApplyLimit(50)).ToList();
             List<Cuboid> theWholeShebang = new List<Cuboid>();
             foreach (Cuboid other in cuboids)
             {
@@ -56,7 +56,7 @@ namespace AdventOfCode2021.Solvers
 
             public long blocks { get { return (long)(1 + x2 - x1) * (1 + y2 - y1) * (1 + z2 - z1); } }
 
-            public static Cuboid? GetCuboid(string line, int limit = 0)
+            public static Cuboid GetCuboid(string line)
             {
                 Regex r = new Regex(@"-?\d+");
                 var matches = r.Matches(line);
@@ -67,8 +67,7 @@ namespace AdventOfCode2021.Solvers
                 int z1 = int.Parse(matches[4].Value);
                 int z2 = int.Parse(matches[5].Value);
                 State state = line.StartsWith("on") ? State.ON : State.OFF;
-                var cuboid = new Cuboid(x1, x2, y1, y2, z1, z2, state);
-                return cuboid.ApplyLimit(limit) ? cuboid : null;
+                return new Cuboid(x1, x2, y1, y2, z1, z2, state);
             }
 
             public Cuboid(int x1, int x2, int y1, int y2, int z1, int z2, State state)
@@ -82,7 +81,7 @@ namespace AdventOfCode2021.Solvers
                 this.state = state;
             }
 
-            private bool ApplyLimit(int limit)
+            public bool ApplyLimit(int limit)
             {
                 int l1 = -limit;
                 int l2 = limit;
