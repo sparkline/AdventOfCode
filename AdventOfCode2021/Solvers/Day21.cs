@@ -70,8 +70,6 @@ namespace AdventOfCode2021.Solvers
             Stack<(int p1Score, int p1Position, long p1Universes, int p2Score, int p2Position, long p2Universes, bool evenTurn)> playsLeft = new Stack<(int p1Score, int p1Position, long p1Universes, int p2Score, int p2Position, long p2Universes, bool evenTurn)>();
             playsLeft.Push((p1Score: 0, p1Position: playerOnePosition, p1Universes: 1l, p2Score: 0, p2Position: playerTwoPosition, p2Universes: 1l, evenTurn: true));
 
-            Dictionary<(int dieRoll, int position), int> lookUpCache = new Dictionary<(int score, int position), int>();
-
             while (playsLeft.Count > 0)
             {
                 var play = playsLeft.Pop();
@@ -79,13 +77,9 @@ namespace AdventOfCode2021.Solvers
                 {
                     int dieValue = roll.Key;
                     int dieFreq = roll.Value;
-                    int newScore, score, position;
+                    int newScore, score, position, newPosition;
                     position = play.evenTurn ? play.p1Position : play.p2Position;
-                    if (!lookUpCache.TryGetValue((dieRoll: dieValue, position: position), out int newPosition))
-                    {
-                        newPosition = (position + dieValue - 1) % 10 + 1;
-                        lookUpCache.Add((dieRoll: dieValue, position: position), newPosition);
-                    }
+                    newPosition = (position + dieValue - 1) % 10 + 1;
                     score = play.evenTurn ? play.p1Score : play.p2Score;
                     newScore = score + newPosition;
 
