@@ -1,4 +1,5 @@
 ﻿using AdventOfCode2021.Common;
+using System.Diagnostics.CodeAnalysis;
 using System.Text;
 
 namespace AdventOfCode2021.Solvers
@@ -19,11 +20,14 @@ namespace AdventOfCode2021.Solvers
 
         protected override object PartA(string input)
         {
-            AmphiPod[] waitRoom = new AmphiPod[7];
             AmphiPod[,] inputChambers = new AmphiPod[CHAMBER_COUNT, 2];
-
             inputChambers = ReadAmphipods(input);
 
+            return CalculateIt(inputChambers);
+        }
+
+        private object CalculateIt(AmphiPod[,] inputChambers)
+        {
             StartSW();
 
             // Constant cost for the give startpositions
@@ -31,75 +35,89 @@ namespace AdventOfCode2021.Solvers
 
             AmphiPod[][] toBeProcessed = RemoveBottom(inputChambers);
             // Queue, breadth first
-            Queue<State> movesLeft = new Queue<State>();
-            Signature signature = new Signature(
+            Stack<State> movesLeft = new Stack<State>();
+            Move signature = new Move(
                 new AmphiPod[]{
                 AmphiPod.Empty, AmphiPod.Empty, AmphiPod.Empty, AmphiPod.Empty, AmphiPod.Empty, AmphiPod.Empty, AmphiPod.Empty, // hallway
                 GetTop(0, toBeProcessed), GetTop(1, toBeProcessed), GetTop(2, toBeProcessed), GetTop(3, toBeProcessed),         // available
             }, cost);
             toBeProcessed = PopTop(toBeProcessed);
-            movesLeft.Enqueue(new State(
+            movesLeft.Push(new State(
                 toBeProcessed, signature));
 
-            int minPrice = int.MaxValue;
-            while (movesLeft.TryDequeue(out State state))
-            {
-                List<State> moves = new List<State>();
+            Dictionary<ulong, List<Move>> cache = new Dictionary<ulong, List<Move>>();
 
-                // Calculate all the moves allowed for given state
-                for (int chamber = 0; chamber < CHAMBER_COUNT; chamber++)
+            int minPrice = int.MaxValue;
+            while (movesLeft.TryPop(out State state))
+            {
+                List<State> moves;
+                if (cache.TryGetValue(GetKey(state.signature.amphiPods), out var cachedMoves))
                 {
-                    // ready for receiving?
-                    if (state.signature.amphiPods[chamber + HALLWAY_SIZE] == AmphiPod.Empty)
+                    moves = ConvertCachedMoves(state, cachedMoves);
+                }
+                else
+                {
+                    var deltaMoves = new List<Move>();
+
+                    // Calculate all the moves allowed for given state
+                    for (int chamber = 0; chamber < CHAMBER_COUNT; chamber++)
                     {
-                        // look to the left
-                        for (int positionInHallway = chamber + 1; positionInHallway >= 0; positionInHallway--)
+                        // ready for receiving?
+                        if (state.signature.amphiPods[chamber + HALLWAY_SIZE] != AmphiPod.Empty)
                         {
-                            bool stop = TryBringAmphiPodHome(chamber, positionInHallway, state, ref moves);
-                            if (stop)
+                            // Let's see where we can reallocate this Amphipod
+                            // look to the left
+                            for (int positionInHallway = chamber + 1; positionInHallway >= 0; positionInHallway--)
                             {
-                                break;
+                                bool stop = TryKickAmphiPodOut(chamber, positionInHallway, state, ref deltaMoves);
+                                if (stop)
+                                {
+                                    break;
+                                }
+                            }
+                            // look to the right
+                            for (int positionInHallway = chamber + 2; positionInHallway < HALLWAY_SIZE; positionInHallway++)
+                            {
+                                bool stop = TryKickAmphiPodOut(chamber, positionInHallway, state, ref deltaMoves);
+                                if (stop)
+                                {
+                                    break;
+                                }
                             }
                         }
-                        // look to the right
-                        for (int positionInHallway = chamber + 2; positionInHallway < HALLWAY_SIZE; positionInHallway++)
+                        else
                         {
-                            bool stop = TryBringAmphiPodHome(chamber, positionInHallway, state, ref moves);
-                            if (stop)
+                            // look to the left
+                            for (int positionInHallway = chamber + 1; positionInHallway >= 0; positionInHallway--)
                             {
-                                break;
+                                bool stop = TryBringAmphiPodHome(chamber, positionInHallway, state, ref deltaMoves);
+                                if (stop)
+                                {
+                                    break;
+                                }
+                            }
+                            // look to the right
+                            for (int positionInHallway = chamber + 2; positionInHallway < HALLWAY_SIZE; positionInHallway++)
+                            {
+                                bool stop = TryBringAmphiPodHome(chamber, positionInHallway, state, ref deltaMoves);
+                                if (stop)
+                                {
+                                    break;
+                                }
                             }
                         }
                     }
-                    else
-                    {
-                        // Let's see where we can reallocate this Amphipod
-                        // look to the left
-                        for (int positionInHallway = chamber + 1; positionInHallway >= 0; positionInHallway--)
-                        {
-                            bool stop = TryKickAmphiPodOut(chamber, positionInHallway, state, ref moves);
-                            if (stop)
-                            {
-                                break;
-                            }
-                        }
-                        // look to the right
-                        for (int positionInHallway = chamber + 2; positionInHallway < HALLWAY_SIZE; positionInHallway++)
-                        {
-                            bool stop = TryKickAmphiPodOut(chamber, positionInHallway, state, ref moves);
-                            if (stop)
-                            {
-                                break;
-                            }
-                        }
-                    }
+
+                    //               Console.WriteLine();
+                    //               Console.WriteLine($"Starting state {iter}");
+                    //               Console.WriteLine();
+                    //               Console.WriteLine(state);
+
+                    cache.Add(GetKey(state.signature.amphiPods), deltaMoves);
+                    moves = ConvertCachedMoves(state, deltaMoves);
                 }
 
-                //               Console.WriteLine();
-                //               Console.WriteLine($"Starting state {iter}");
-                //               Console.WriteLine();
-                //               Console.WriteLine(state);
-
+                // Moves for next loop
                 // Add the moves if they have a score lower than minprice
                 foreach (State move in moves)
                 {
@@ -117,13 +135,52 @@ namespace AdventOfCode2021.Solvers
                         }
                         else
                         {
-                            movesLeft.Enqueue(move);
+                            movesLeft.Push(move);
                         }
                     }
                 }
+
             }
 
             return minPrice;
+        }
+
+        private ulong GetKey(AmphiPod[] amphiPods)
+        {
+            ulong result = 0;
+            foreach(var amphiPod in amphiPods)
+            {
+                result += (ulong)amphiPod;
+                result = result << 3;
+            }
+            return result;
+        }
+
+        private List<State> ConvertCachedMoves(State state, List<Move> cachedMoves)
+        {
+            List<State> result = new List<State>();
+
+            foreach (Move move in cachedMoves)
+            {
+                var newSignature = QuickClone(move.amphiPods);
+                int newPrice = state.signature.price + move.price;
+                var newToBeProcessed = state.toBeProcessed;
+
+                for (int chamber = 0; chamber < CHAMBER_COUNT; chamber++)
+                {
+                    if (state.signature.amphiPods[chamber+HALLWAY_SIZE] != move.amphiPods[chamber+HALLWAY_SIZE])
+                    {
+                        // assertion, the only way this happens is if a amphipod got kicked out
+                        newSignature[chamber + HALLWAY_SIZE] = GetTop(chamber, state.toBeProcessed);
+                        newToBeProcessed = PopTop(state.toBeProcessed, chamber);
+                        break; // found the single escaping amphipod
+                    }
+                }
+
+                result.Add(new State(newToBeProcessed, new Move(newSignature, newPrice)));
+            }
+
+            return result;
         }
 
         private bool GameFinished(State state)
@@ -138,7 +195,7 @@ namespace AdventOfCode2021.Solvers
             return true;
         }
 
-        private bool TryKickAmphiPodOut(int chamber, int positionInHallway, State state, ref List<State> moves)
+        private bool TryKickAmphiPodOut(int chamber, int positionInHallway, State state, ref List<Move> moves)
         {
             AmphiPod amphiPodInChamber = state.signature.amphiPods[chamber + HALLWAY_SIZE];
             bool hallwayIsEmpty = state.signature.amphiPods[positionInHallway] == AmphiPod.Empty;
@@ -147,13 +204,13 @@ namespace AdventOfCode2021.Solvers
                 // Add move
                 AmphiPod[] newAmphipods = QuickClone(state.signature.amphiPods);
                 newAmphipods[positionInHallway] = amphiPodInChamber;
-                AmphiPod newAmphipod = GetTop(chamber, state.toBeProcessed);
-                AmphiPod[][] newToBeProcessed = PopTop(state.toBeProcessed, chamber);
-                newAmphipods[chamber + HALLWAY_SIZE] = newAmphipod;
+                //AmphiPod newAmphipod = GetTop(chamber, state.toBeProcessed);
+                // AmphiPod[][] newToBeProcessed = PopTop(state.toBeProcessed, chamber);
+                newAmphipods[chamber + HALLWAY_SIZE] = AmphiPod.Empty; // gets picked up by cache
                 int steps = stepsFromHallwayToChamber[chamber, positionInHallway];
                 int price = steps * Score(amphiPodInChamber);
-                int totalPrice = price + state.signature.price;
-                State move = new State(newToBeProcessed, new Signature(newAmphipods, totalPrice));
+                //int totalPrice = price + state.signature.price;
+                var move = new Move(newAmphipods, price);
                 moves.Add(move);
 
                 return false;
@@ -189,7 +246,7 @@ namespace AdventOfCode2021.Solvers
             return result;
         }
 
-        private bool TryBringAmphiPodHome(int chamber, int positionInHallway, State state, ref List<State> moves)
+        private bool TryBringAmphiPodHome(int chamber, int positionInHallway, State state, ref List<Move> moves)
         {
             AmphiPod amphiPodBelongingToChamber = AmphiPodForChamber(chamber);
             AmphiPod amphipodInHallway = state.signature.amphiPods[positionInHallway];
@@ -201,8 +258,8 @@ namespace AdventOfCode2021.Solvers
                 newAmphipods[HALLWAY_SIZE + chamber] = AmphiPod.Empty; // Bleep bloop, black hole
                 int steps = stepsFromHallwayToChamber[chamber, positionInHallway];
                 int price = steps * Score(amphiPodBelongingToChamber);
-                int totalPrice = price + state.signature.price;
-                State move = new State(state.toBeProcessed, new Signature(newAmphipods, totalPrice));
+                // int totalPrice = price + state.signature.price;
+                var move =  new Move(newAmphipods, price);
                 moves.Add(move);
                 return true;
             }
@@ -226,9 +283,9 @@ namespace AdventOfCode2021.Solvers
         struct State
         {
             public AmphiPod[][] toBeProcessed;
-            public Signature signature;
+            public Move signature;
 
-            public State(AmphiPod[][] toBeProcessed, Signature signature)
+            public State(AmphiPod[][] toBeProcessed, Move signature)
             {
                 this.toBeProcessed = toBeProcessed;
                 this.signature = signature;
@@ -276,9 +333,47 @@ namespace AdventOfCode2021.Solvers
         struct Signature
         {
             public AmphiPod[] amphiPods;
+
+            public Signature(AmphiPod[] amphiPods)
+            {
+                this.amphiPods = amphiPods;
+            }
+            /*
+            public override int GetHashCode()
+            {
+                return string.Join(amphiPods.Select(a => a.ShortString()))
+            }
+            
+            public override bool Equals(object? obj)
+            {
+                if ((obj == null) || !this.GetType().Equals(obj.GetType()))
+                {
+                    return false;
+                }
+                else
+                {
+                    Signature p = (Signature)obj;
+                    if (p.amphiPods.Length != amphiPods.Length)
+                    {
+                        return false;
+                    } else
+                    {
+                        return Enumerable.SequenceEqual(amphiPods, p.amphiPods);
+                    }
+                }
+
+            }
+            */
+        }
+
+        struct Move
+        {
+            //            public Signature amphiPods;
+            public AmphiPod[] amphiPods;
+
             public int price;
 
-            public Signature(AmphiPod[] amphiPods, int price)
+            public Move(AmphiPod[] amphiPods, int price)
             {
                 this.amphiPods = amphiPods;
                 this.price = price;
@@ -410,15 +505,20 @@ namespace AdventOfCode2021.Solvers
             };
         }
 
-        private AmphiPod[,] ReadAmphipods(string input)
+        private AmphiPod[,] ReadAmphipods(string input, bool folded = false)
         {
-            AmphiPod[,] chambers = new AmphiPod[CHAMBER_COUNT, 2];
+            AmphiPod[,] extra = new AmphiPod[2, 4] {
+                {AmphiPod.Desert,AmphiPod.Copper,AmphiPod.Bronze,AmphiPod.Amber },
+                {AmphiPod.Desert,AmphiPod.Bronze,AmphiPod.Amber,AmphiPod.Copper } };
+
+            AmphiPod[,] chambers = new AmphiPod[CHAMBER_COUNT, folded?4:2];
             var lines = input.SplitOnNewline();
-            for (int y = 0; y < chambers.GetLength(1); y++)
+            for (int x = 0; x < chambers.GetLength(0); x++)
             {
-                for (int x = 0; x < chambers.GetLength(0); x++)
+                for (int line = 0; line < 2; line++)
                 {
-                    chambers[x, y] = lines[y + 2][3 + x * 2] switch
+                    int y = folded ? line * 3 : line;
+                    chambers[x, y] = lines[line + 2][3 + x * 2] switch
                     {
                         'A' => AmphiPod.Amber,
                         'B' => AmphiPod.Bronze,
@@ -426,14 +526,25 @@ namespace AdventOfCode2021.Solvers
                         'D' => AmphiPod.Desert,
                         _ => AmphiPod.Empty,
                     };
+
+                    if (folded && line == 0)
+                    {
+                        // Add additional lines
+                        chambers[x, 1] = extra[0, x];
+                        chambers[x, 2] = extra[1, x];
+                    }
                 }
             }
+
             return chambers;
         }
 
         protected override object PartB(string input)
         {
-            throw new NotImplementedException();
+            AmphiPod[,] inputChambers = new AmphiPod[CHAMBER_COUNT, 4];
+            inputChambers = ReadAmphipods(input, true);
+
+            return CalculateIt(inputChambers);
         }
     }
 }
