@@ -1,4 +1,6 @@
-﻿namespace AdventOfCode2021.Common
+﻿using static AdventOfCode2021.Solvers.Day23;
+
+namespace AdventOfCode2021.Common
 {
     public static class Extensions
     {
@@ -74,6 +76,19 @@
                 .Where(x => x.HasValue)
                 .Select(x => x.Value);
         }
+
+        public static string ShortString(this AmphiPod amphiPod)
+        {
+            return amphiPod switch
+            {
+                AmphiPod.Empty => ".",
+                AmphiPod.Amber => "A",
+                AmphiPod.Bronze => "B",
+                AmphiPod.Copper => "C",
+                AmphiPod.Desert => "D",
+            };
+        }
+
 
     }
 

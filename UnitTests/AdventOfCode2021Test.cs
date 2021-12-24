@@ -702,7 +702,7 @@ namespace UnitTests
 
             var result = solution.TestPartAResult();
 
-            Assert.AreEqual(null, result);
+            Assert.AreEqual(12521, result);
         }
 
         [TestMethod]
