@@ -27,6 +27,7 @@ namespace AdventOfCode2021.Solvers
         {
             List<string> lines = input.SplitOnNewline();
             List<Cuboid> cuboids = lines.Select(line => Cuboid.GetCuboid(line)).Where(c => c != null).ToList();
+            /*
             LinkedList<Cuboid> theWholeShebang = new LinkedList<Cuboid>();
             StartSW();
             foreach (Cuboid other in cuboids)
@@ -45,6 +46,17 @@ namespace AdventOfCode2021.Solvers
                 }
                 theWholeShebang.AddFirst(other);
             }
+            */
+            List<Cuboid> theWholeShebang = new List<Cuboid>();
+            StartSW();
+            foreach (Cuboid other in cuboids)
+            {
+                // make some room
+                theWholeShebang = theWholeShebang.SelectMany(cuboid => cuboid.Collide(other)).ToList();
+                // add it
+                theWholeShebang.Add(other);
+            }
+
             return theWholeShebang.Where(c => c.isOn()).Sum(c => c.blocks);
         }
 
