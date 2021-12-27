@@ -1,5 +1,4 @@
 ﻿using AdventOfCode2021.Common;
-using System.Diagnostics.CodeAnalysis;
 using System.Text;
 
 namespace AdventOfCode2021.Solvers
@@ -148,7 +147,7 @@ namespace AdventOfCode2021.Solvers
         private ulong GetKey(AmphiPod[] amphiPods)
         {
             ulong result = 0;
-            foreach(var amphiPod in amphiPods)
+            foreach (var amphiPod in amphiPods)
             {
                 result += (ulong)amphiPod;
                 result = result << 3;
@@ -168,7 +167,7 @@ namespace AdventOfCode2021.Solvers
 
                 for (int chamber = 0; chamber < CHAMBER_COUNT; chamber++)
                 {
-                    if (state.signature.amphiPods[chamber+HALLWAY_SIZE] != move.amphiPods[chamber+HALLWAY_SIZE])
+                    if (state.signature.amphiPods[chamber + HALLWAY_SIZE] != move.amphiPods[chamber + HALLWAY_SIZE])
                     {
                         // assertion, the only way this happens is if a amphipod got kicked out
                         newSignature[chamber + HALLWAY_SIZE] = GetTop(chamber, state.toBeProcessed);
@@ -259,7 +258,7 @@ namespace AdventOfCode2021.Solvers
                 int steps = stepsFromHallwayToChamber[chamber, positionInHallway];
                 int price = steps * Score(amphiPodBelongingToChamber);
                 // int totalPrice = price + state.signature.price;
-                var move =  new Move(newAmphipods, price);
+                var move = new Move(newAmphipods, price);
                 moves.Add(move);
                 return true;
             }
@@ -511,7 +510,7 @@ namespace AdventOfCode2021.Solvers
                 {AmphiPod.Desert,AmphiPod.Copper,AmphiPod.Bronze,AmphiPod.Amber },
                 {AmphiPod.Desert,AmphiPod.Bronze,AmphiPod.Amber,AmphiPod.Copper } };
 
-            AmphiPod[,] chambers = new AmphiPod[CHAMBER_COUNT, folded?4:2];
+            AmphiPod[,] chambers = new AmphiPod[CHAMBER_COUNT, folded ? 4 : 2];
             var lines = input.SplitOnNewline();
             for (int x = 0; x < chambers.GetLength(0); x++)
             {
