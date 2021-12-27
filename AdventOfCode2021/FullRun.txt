@@ -1,0 +1,274 @@
+﻿Usage:
+        Day:            -d xx
+        Year:           -y xxxx
+        Iteration:      -i x
+[000001ms] 2021-1 Part A - Iteration 0
+
+1451
+
+[000000ms] 2021-1 Part B - Iteration 0
+
+1395
+
+[000000ms] 2021-2 Part A - Iteration 0
+
+1694130
+
+[000000ms] 2021-2 Part B - Iteration 0
+
+1698850445
+
+[000002ms] 2021-3 Part A - Iteration 0
+
+3895776
+
+[000003ms] 2021-3 Part B - Iteration 0
+
+7928162
+
+[000007ms] 2021-4 Part A - Iteration 0
+
+39902
+
+[000002ms] 2021-4 Part B - Iteration 0
+
+26936
+
+[000027ms] 2021-5 Part A - Iteration 0
+
+5145
+
+[000024ms] 2021-5 Part B - Iteration 0
+
+16518
+
+[000018ms] 2021-5 Part A - Iteration 1 - faster
+
+5145
+
+[000019ms] 2021-5 Part B - Iteration 1 - faster
+
+16518
+
+[000060ms] 2021-6 Part A - Iteration 0
+
+353274
+
+[000000ms] 2021-6 Part B - Iteration 0
+
+1609314870967
+
+[000007ms] 2021-7 Part A - Iteration 0
+
+348664
+
+[000007ms] 2021-7 Part B - Iteration 0
+
+100220525
+
+[000023ms] 2021-7 Part A - Iteration 1 - brief
+
+348664
+
+[000026ms] 2021-7 Part B - Iteration 1 - brief
+
+100220525
+
+[000001ms] 2021-7 Part A - Iteration 2 - faster
+
+348664
+
+[000000ms] 2021-7 Part B - Iteration 2 - faster
+
+100220525
+
+[000001ms] 2021-8 Part A - Iteration 0
+
+476
+
+[000010ms] 2021-8 Part B - Iteration 0
+
+1011823
+
+[000000ms] 2021-9 Part A - Iteration 0
+
+580
+
+[000003ms] 2021-9 Part B - Iteration 0
+
+856716
+
+[000002ms] 2021-10 Part A - Iteration 0
+
+392097
+
+[000005ms] 2021-10 Part B - Iteration 0
+
+4263222782
+
+[000006ms] 2021-11 Part A - Iteration 0
+
+1694
+
+[000006ms] 2021-11 Part B - Iteration 0
+
+346
+
+[000025ms] 2021-12 Part A - Iteration 0
+
+5212
+
+[000373ms] 2021-12 Part B - Iteration 0
+
+134862
+
+[000006ms] 2021-12 Part A - Iteration 1 - DFS2
+
+5212
+
+[000113ms] 2021-12 Part B - Iteration 1 - DFS2
+
+134862
+
+[000014ms] 2021-12 Part A - Iteration 1 - DFS3, without recursion
+
+5212
+
+[000266ms] 2021-12 Part B - Iteration 1 - DFS3, without recursion
+
+134862
+
+[000012ms] 2021-13 Part A - Iteration 0
+
+765
+
+[000004ms] 2021-13 Part B - Iteration 0
+
+
+        ###..####.#..#.####.#....###...##..#..#
+        #..#....#.#.#.....#.#....#..#.#..#.#..#
+        #..#...#..##.....#..#....#..#.#....####
+        ###...#...#.#...#...#....###..#.##.#..#
+        #.#..#....#.#..#....#....#....#..#.#..#
+        #..#.####.#..#.####.####.#.....###.#..#
+
+
+[000016ms] 2021-14 Part A - Iteration 0
+
+2915
+
+[000030ms] 2021-14 Part B - Iteration 0
+
+3353146900153
+
+[001768ms] 2021-15 Part A - Iteration 0 - Dijkstra
+
+458
+
+[000010ms] 2021-15 Part B - Iteration 0 - Dijkstra
+
+[Part B is not implemented yet.]
+
+[000001ms] 2021-15 Part A - Iteration 1 - Thought about it again, wrongly, since we only move right-down
+
+470
+
+[000006ms] 2021-15 Part B - Iteration 1 - Thought about it again, wrongly, since we only move right-down
+
+2820
+
+[000008ms] 2021-15 Part A - Iteration 2 - Okay, okay, A* it is
+
+458
+
+[000126ms] 2021-15 Part B - Iteration 2 - Okay, okay, A* it is
+
+2800
+
+[000005ms] 2021-16 Part A - Iteration 0
+
+871
+
+[000001ms] 2021-16 Part B - Iteration 0
+
+68703010504
+
+[000000ms] 2021-17 Part A - Iteration 0
+
+7750
+
+[000001ms] 2021-17 Part B - Iteration 0
+
+4120
+
+[000005ms] 2021-18 Part A - Iteration 0
+
+4072
+
+[000066ms] 2021-18 Part B - Iteration 0
+
+4483
+
+[002744ms] 2021-19 Part A - Iteration 0
+
+362
+
+[002697ms] 2021-19 Part B - Iteration 0
+
+12204
+
+[000014ms] 2021-20 Part A - Iteration 0
+
+5259
+
+[000439ms] 2021-20 Part B - Iteration 0
+
+15287
+
+[000000ms] 2021-21 Part A - Iteration 0
+
+551901
+
+[003081ms] 2021-21 Part B - Iteration 0
+
+272847859601291
+
+[000001ms] 2021-22 Part A - Iteration 0
+
+606484
+
+[000062ms] 2021-22 Part B - Iteration 0
+
+1162571910364852
+
+[046277ms] 2021-23 Part A - Iteration 0
+
+14371
+
+[004102ms] 2021-23 Part B - Iteration 0
+
+40941
+
+[000251ms] 2021-23 Part A - Iteration 1 - Faster
+
+14371
+
+[000234ms] 2021-23 Part B - Iteration 1 - Faster
+
+40941
+
+[000000ms] 2021-24 Part A - Iteration 0
+
+99196997985942
+
+[000000ms] 2021-24 Part B - Iteration 0
+
+84191521311611
+
+[000197ms] 2021-25 Part A - Iteration 0
+
+300
+
+[000008ms] 2021-25 Part B - Iteration 0
+
+[Part B is not implemented yet.]
