@@ -22,7 +22,8 @@ namespace AdventOfCode2021.Solvers
                     // 9 + 1 is not a valid input, remember:  (input != (z.pop() + VAR1))
                     maxNumber[item.algNo] = 9;
                     maxNumber[item.pushedAlgNo] = 9 - item.RHS;
-                } else
+                }
+                else
                 {
                     maxNumber[item.algNo] = 9 + item.RHS;
                     maxNumber[item.pushedAlgNo] = 9;
@@ -38,9 +39,9 @@ namespace AdventOfCode2021.Solvers
             Stack<(int algNo, int var2)> s = new Stack<(int algNo, int var2)>();
             List<(int algNo, int pushedAlgNo, int RHS)> result = new List<(int algNo, int pushedAlgNo, int RHS)>();
             var lines = input.SplitOnNewline();
-            for (int algNo = 0;algNo<14;algNo++)
+            for (int algNo = 0; algNo < 14; algNo++)
             {
-                bool doPop = lines[algNo * 18 + 4].Split(' ')[2]=="26";
+                bool doPop = lines[algNo * 18 + 4].Split(' ')[2] == "26";
                 int var1 = int.Parse(lines[algNo * 18 + 5].Split(' ')[2]);
                 int var2 = int.Parse(lines[algNo * 18 + 15].Split(' ')[2]);
                 if (doPop)
@@ -50,7 +51,7 @@ namespace AdventOfCode2021.Solvers
                     // therefore RHS = z.pop()+VAR1
                     (int pushedAlgNo, int pushedVar2) zz = s.Pop();
                     result.Add((algNo, zz.pushedAlgNo, var1 + zz.pushedVar2));
-                } 
+                }
                 else
                 {
                     s.Push((algNo, var2));

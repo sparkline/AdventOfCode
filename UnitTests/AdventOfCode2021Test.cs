@@ -716,43 +716,15 @@ namespace UnitTests
         }
 
         [TestMethod]
-        public void Day24aTest()
-        {
-            Day24 solution = new Day24();
-
-            var result = solution.TestPartAResult();
-
-            Assert.AreEqual(null, result);
-        }
-
-        [TestMethod]
-        public void Day24bTest()
-        {
-            Day24 solution = new Day24();
-
-            var result = solution.TestPartBResult();
-
-            Assert.AreEqual(null, result);
-        }
-
-        [TestMethod]
         public void Day25aTest()
         {
             Day25 solution = new Day25();
 
             var result = solution.TestPartAResult();
 
-            Assert.AreEqual(null, result);
+            Assert.AreEqual(58, result);
         }
 
-        [TestMethod]
-        public void Day25bTest()
-        {
-            Day25 solution = new Day25();
 
-            var result = solution.TestPartBResult();
-
-            Assert.AreEqual(null, result);
-        }
     }
 }
