@@ -1,12 +1,19 @@
 ﻿using System.Diagnostics;
 
-namespace AdventOfCode2021.Common
+namespace AdventOfCode2022.Common
 {
     public abstract class Solver
     {
         protected Solver(int year, int day, int iteration = 0, string description = "")
         {
             this.Year = year;
+            this.Day = day;
+            this.iteration = iteration;
+            this.description = description;
+        }
+        protected Solver(int day, int iteration = 0, string description = "")
+        {
+            this.Year = 2022;
             this.Day = day;
             this.iteration = iteration;
             this.description = description;
@@ -104,14 +111,14 @@ namespace AdventOfCode2021.Common
 
         protected string GetInput()
         {
-            string dir = @"C:\Users\jeroenvonk\source\repos\AdventOfCode\AdventOfCode2021\Data\";
+            string dir = @"C:\Users\jeroenvonk\source\repos\AdventOfCode\AdventOfCode2022\Data\";
             string input = ReadFileContents($"{dir}Input.{Day:00}");
             return input;
         }
 
         protected string GetTestInput()
         {
-            string dir = @"C:\Users\jeroenvonk\source\repos\AdventOfCode\UnitTests\2021\Data\";
+            string dir = @"C:\Users\jeroenvonk\source\repos\AdventOfCode\UnitTests\2022\Data\";
             string input = ReadFileContents($"{dir}Test.{Day:00}.in");
             return input;
         }

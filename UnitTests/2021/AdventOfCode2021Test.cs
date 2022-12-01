@@ -12,7 +12,7 @@ namespace UnitTests
         public AdventOfCode2021Test()
         {
             string baseDir = AppDomain.CurrentDomain.BaseDirectory;
-            baseDir = baseDir.Substring(0, baseDir.IndexOf("bin")) + "Data\\";
+            baseDir = baseDir.Substring(0, baseDir.IndexOf("bin")) + "2021\\Data\\";
             Directory.SetCurrentDirectory(baseDir);
         }
 
