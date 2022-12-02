@@ -31,16 +31,17 @@ namespace AdventOfCode2022.Solvers
 
         private RoPaSc outcomeOracle(RoPaSc opponent, string input)
         {
+            const int SIZE = 3;
             int opponentValue = (int)opponent;
             int outcome = input switch
             {
-                "X" => 2,
-                "Y" => 3,
-                "Z" => 4,
+                "X" => -1 + SIZE,
+                "Y" => 0 + SIZE,
+                "Z" => 1 + SIZE,
                 _ => throw new NotImplementedException()
             };
 
-            int me = (opponentValue + outcome) % 3;
+            int me = (opponentValue + outcome) % SIZE;
             return (RoPaSc)me;
         }
 
