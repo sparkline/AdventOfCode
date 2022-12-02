@@ -69,8 +69,8 @@ namespace AdventOfCode2022.Solvers
             List<(RoPaSc opponent, RoPaSc me)> games = new List<(RoPaSc left, RoPaSc right)>();
             foreach (var pair in pairs)
             {
-                var opponent = pair.Split(' ')[0];
-                var me = pair.Split(' ')[1];
+                var opponent = pair.Split()[0];
+                var me = pair.Split()[1];
                 games.Add((opponentOracle(opponent), myOracle(me)));
             }
             int totalScore = games.Sum(p => gameScore(p.me, p.opponent));
@@ -84,8 +84,8 @@ namespace AdventOfCode2022.Solvers
             List<(RoPaSc opponent, RoPaSc me)> games = new List<(RoPaSc left, RoPaSc right)>();
             foreach (var pair in pairs)
             {
-                var opponent = opponentOracle(pair.Split(' ')[0]);
-                var outcome = pair.Split(' ')[1];
+                var opponent = opponentOracle(pair.Split()[0]);
+                var outcome = pair.Split()[1];
                 games.Add((opponent, outcomeOracle(opponent, outcome)));
             }
 
