@@ -35,7 +35,23 @@ namespace UnitTests
 
             Assert.AreEqual(45000, result);
         }
-        /*
+
+        [TestMethod]
+        public void Day02rpcTest()
+        {
+            Day02 solution = new Day02();
+            Assert.AreEqual(0, solution.CompareRPC(Day02.RoPaSc.Rock, Day02.RoPaSc.Rock));
+            Assert.AreEqual(-1, solution.CompareRPC(Day02.RoPaSc.Rock, Day02.RoPaSc.Paper));
+            Assert.AreEqual(1, solution.CompareRPC(Day02.RoPaSc.Rock, Day02.RoPaSc.Scissors));
+            Assert.AreEqual(1, solution.CompareRPC(Day02.RoPaSc.Paper, Day02.RoPaSc.Rock));
+            Assert.AreEqual(0, solution.CompareRPC(Day02.RoPaSc.Paper, Day02.RoPaSc.Paper));
+            Assert.AreEqual(-1, solution.CompareRPC(Day02.RoPaSc.Paper, Day02.RoPaSc.Scissors));
+            Assert.AreEqual(-1, solution.CompareRPC(Day02.RoPaSc.Scissors, Day02.RoPaSc.Rock));
+            Assert.AreEqual(1, solution.CompareRPC(Day02.RoPaSc.Scissors, Day02.RoPaSc.Paper));
+            Assert.AreEqual(0, solution.CompareRPC(Day02.RoPaSc.Scissors, Day02.RoPaSc.Scissors));
+        }
+
+
         [TestMethod]
         public void Day02aTest()
         {
@@ -43,7 +59,7 @@ namespace UnitTests
 
             var result = solution.TestPartAResult();
 
-            Assert.AreEqual(150, result);
+            Assert.AreEqual(15, result);
         }
 
         [TestMethod]
@@ -53,9 +69,9 @@ namespace UnitTests
 
             var result = solution.TestPartBResult();
 
-            Assert.AreEqual(900, result);
+            Assert.AreEqual(12, result);
         }
-
+        /*
         [TestMethod]
         public void Day03aTest()
         {
