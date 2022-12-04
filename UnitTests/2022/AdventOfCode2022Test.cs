@@ -71,7 +71,7 @@ namespace UnitTests
 
             Assert.AreEqual(12, result);
         }
-        /*
+        
         [TestMethod]
         public void Day03aTest()
         {
@@ -79,9 +79,9 @@ namespace UnitTests
 
             var result = solution.TestPartAResult();
 
-            Assert.AreEqual(198, result);
+            Assert.AreEqual(157, result);
         }
-
+        
         [TestMethod]
         public void Day03bTest()
         {
@@ -89,9 +89,9 @@ namespace UnitTests
 
             var result = solution.TestPartBResult();
 
-            Assert.AreEqual(230, result);
+            Assert.AreEqual(70, result);
         }
-
+        
         [TestMethod]
         public void Day04aTest()
         {
@@ -99,7 +99,7 @@ namespace UnitTests
 
             var result = solution.TestPartAResult();
 
-            Assert.AreEqual(4512, result);
+            Assert.AreEqual(2, result);
         }
 
         [TestMethod]
@@ -109,9 +109,9 @@ namespace UnitTests
 
             var result = solution.TestPartBResult();
 
-            Assert.AreEqual(1924, result);
+            Assert.AreEqual(4, result);
         }
-
+        /*
         [TestMethod]
         public void Day05aTest()
         {
