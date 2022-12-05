@@ -111,7 +111,7 @@ namespace UnitTests
 
             Assert.AreEqual(4, result);
         }
-        /*
+        
         [TestMethod]
         public void Day05aTest()
         {
@@ -119,7 +119,7 @@ namespace UnitTests
 
             var result = solution.TestPartAResult();
 
-            Assert.AreEqual(5, result);
+            Assert.AreEqual("CMZ", result);
         }
 
         [TestMethod]
@@ -129,9 +129,9 @@ namespace UnitTests
 
             var result = solution.TestPartBResult();
 
-            Assert.AreEqual(12, result);
+            Assert.AreEqual("MCD", result);
         }
-
+        /*
         [TestMethod]
         public void Day05_1aTest()
         {
