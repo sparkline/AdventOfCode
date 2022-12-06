@@ -131,39 +131,32 @@ namespace UnitTests
 
             Assert.AreEqual("MCD", result);
         }
-        /*
-        [TestMethod]
-        public void Day05_1aTest()
-        {
-            Day05_1 solution = new Day05_1();
-
-            var result = solution.TestPartAResult();
-
-            Assert.AreEqual(5, result);
-        }
-
-        [TestMethod]
-        public void Day05_1bTest()
-        {
-            Day05_1 solution = new Day05_1();
-
-            var result = solution.TestPartBResult();
-
-            Assert.AreEqual(12, result);
-        }
 
         [TestMethod]
         public void Day06aTest()
         {
             Day06 solution = new Day06();
 
-            var result = solution.TestPartAResult();
-
-            Assert.AreEqual(5934, result);
+            Assert.AreEqual(7, solution.TestPartAResult("mjqjpqmgbljsphdztnvjfqwrcgsmlb"));
+            Assert.AreEqual(5, solution.TestPartAResult("bvwbjplbgvbhsrlpgdmjqwftvncz"));
+            Assert.AreEqual(6, solution.TestPartAResult("nppdvjthqldpwncqszvftbrmjlhg"));
+            Assert.AreEqual(10, solution.TestPartAResult("nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg"));
+            Assert.AreEqual(11, solution.TestPartAResult("zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw"));
         }
 
-        // No 6b test available
+        [TestMethod]
+        public void Day06bTest()
+        {
+            Day06 solution = new Day06();
 
+            Assert.AreEqual(19, solution.TestPartBResult("mjqjpqmgbljsphdztnvjfqwrcgsmlb"));
+            Assert.AreEqual(23, solution.TestPartBResult("bvwbjplbgvbhsrlpgdmjqwftvncz"));
+            Assert.AreEqual(23, solution.TestPartBResult( "nppdvjthqldpwncqszvftbrmjlhg"));
+            Assert.AreEqual(29, solution.TestPartBResult( "nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg"));
+            Assert.AreEqual(26, solution.TestPartBResult("zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw"));
+        }
+
+/*
         [TestMethod]
         public void Day07aTest()
         {
