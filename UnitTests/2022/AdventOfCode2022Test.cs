@@ -156,7 +156,7 @@ namespace UnitTests
             Assert.AreEqual(26, solution.TestPartBResult("zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw"));
         }
 
-/*
+
         [TestMethod]
         public void Day07aTest()
         {
@@ -164,7 +164,7 @@ namespace UnitTests
 
             var result = solution.TestPartAResult();
 
-            Assert.AreEqual(37, result);
+            Assert.AreEqual(95437L, result);
         }
 
         [TestMethod]
@@ -174,9 +174,10 @@ namespace UnitTests
 
             var result = solution.TestPartBResult();
 
-            Assert.AreEqual(168, result);
+            Assert.AreEqual(24933642L, result);
         }
 
+        /*
         [TestMethod]
         public void Day07_1aTest()
         {
