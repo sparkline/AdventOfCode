@@ -177,49 +177,6 @@ namespace UnitTests
             Assert.AreEqual(24933642L, result);
         }
 
-        /*
-        [TestMethod]
-        public void Day07_1aTest()
-        {
-            Day07_1 solution = new Day07_1();
-
-            var result = solution.TestPartAResult();
-
-            Assert.AreEqual(37, result);
-        }
-
-        [TestMethod]
-        public void Day07_1bTest()
-        {
-            Day07_1 solution = new Day07_1();
-
-            var result = solution.TestPartBResult();
-
-            Assert.AreEqual(168, result);
-        }
-
-        [TestMethod]
-        public void Day07_2aTest()
-        {
-            Day07_2 solution = new Day07_2();
-
-            var result = solution.TestPartAResult();
-
-            Assert.AreEqual(37, result);
-        }
-
-        //
-        // * Error, answer right, but not for this case...
-        //[TestMethod]
-        //public void Day07bFastestTest()
-        //{
-        //    Day07Fast solution = new Day07Fast();
-        //
-        //    var result = solution.TestPartBResult();
-        //
-        //    Assert.AreEqual(168, result);
-        //}
-        //
 
         [TestMethod]
         public void Day08aTest()
@@ -228,7 +185,7 @@ namespace UnitTests
 
             var result = solution.TestPartAResult();
 
-            Assert.AreEqual(26, result);
+            Assert.AreEqual(21, result);
         }
 
         [TestMethod]
@@ -238,9 +195,9 @@ namespace UnitTests
 
             var result = solution.TestPartBResult();
 
-            Assert.AreEqual(61229, result);
+            Assert.AreEqual(8L, result);
         }
-
+/*
         [TestMethod]
         public void Day09aTest()
         {
