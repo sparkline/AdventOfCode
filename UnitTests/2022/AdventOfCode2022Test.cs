@@ -225,7 +225,7 @@ U 20";
 
             Assert.AreEqual(36, result);
         }
-/*
+
         [TestMethod]
         public void Day10aTest()
         {
@@ -233,7 +233,7 @@ U 20";
 
             var result = solution.TestPartAResult();
 
-            Assert.AreEqual(26397, result);
+            Assert.AreEqual(13140L, result);
         }
 
         [TestMethod]
@@ -241,11 +241,18 @@ U 20";
         {
             Day10 solution = new Day10();
 
+            string expectedResult = @"##..##..##..##..##..##..##..##..##..##..
+###...###...###...###...###...###...###.
+####....####....####....####....####....
+#####.....#####.....#####.....#####.....
+######......######......######......####
+#######.......#######.......#######.....";
+
             var result = solution.TestPartBResult();
 
-            Assert.AreEqual(288957L, result);
+            Assert.AreEqual(expectedResult, result);
         }
-
+/*
         [TestMethod]
         public void Day11aTest()
         {
