@@ -1,4 +1,6 @@
-﻿namespace AdventOfCode2022.Common
+﻿using System.Runtime.CompilerServices;
+
+namespace AdventOfCode2022.Common
 {
     public static class Extensions
     {
@@ -75,7 +77,21 @@
                 .Select(x => x.Value);
         }
 
+        public static (int x, int y) Sum(this (int x, int y) own, (int x, int y) other)
+        {
+            return (own.x + other.x, own.y + other.y);
+        }
+        public static (int x, int y) Subtract(this (int x, int y) own, (int x, int y) other)
+        {
+            return (own.x - other.x, own.y - other.y);
+        }
 
+        public static (int x, int y) NormalVector(this (int x, int y) own)
+        {
+            return (Math.Sign(own.x), Math.Sign(own.y));
+        }
+
+        public static int Abs(this int x) { return Math.Abs(x); }
     }
 
 }

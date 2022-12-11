@@ -197,7 +197,7 @@ namespace UnitTests
 
             Assert.AreEqual(8L, result);
         }
-/*
+
         [TestMethod]
         public void Day09aTest()
         {
@@ -205,19 +205,27 @@ namespace UnitTests
 
             var result = solution.TestPartAResult();
 
-            Assert.AreEqual(15, result);
+            Assert.AreEqual(13, result);
         }
 
         [TestMethod]
         public void Day09bTest()
         {
             Day09 solution = new Day09();
+            string input = @"R 5
+U 8
+L 8
+D 3
+R 17
+D 10
+L 25
+U 20";
 
-            var result = solution.TestPartBResult();
+            var result = solution.TestPartBResult(input);
 
-            Assert.AreEqual(1134, result);
+            Assert.AreEqual(36, result);
         }
-
+/*
         [TestMethod]
         public void Day10aTest()
         {
