@@ -313,7 +313,6 @@ U 20";
             Assert.AreEqual(140, result);
         }
 
-/*
                 [TestMethod]
                 public void Day14aTest()
                 {
@@ -321,7 +320,7 @@ U 20";
 
                     var result = solution.TestPartAResult();
 
-                    Assert.AreEqual(1588L, result);
+                    Assert.AreEqual(24, result);
                 }
 
                 [TestMethod]
@@ -331,9 +330,9 @@ U 20";
 
                     var result = solution.TestPartBResult();
 
-                    Assert.AreEqual(2188189693529L, result);
+                    Assert.AreEqual(93, result);
                 }
-
+/*
                 [TestMethod]
                 public void Day15aTest()
                 {
