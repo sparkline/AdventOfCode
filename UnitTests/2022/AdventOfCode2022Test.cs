@@ -332,37 +332,27 @@ U 20";
 
                     Assert.AreEqual(93, result);
                 }
-/*
+
                 [TestMethod]
                 public void Day15aTest()
                 {
-                    Day15 solution = new Day15();
+                    Day15 solution = new Day15(10,20);
 
                     var result = solution.TestPartAResult();
 
-                    Assert.AreEqual(40, result);
+                    Assert.AreEqual(26L, result);
                 }
 
                 [TestMethod]
-                public void Day15_1aTest()
+                public void Day15bTest()
                 {
-                    Day15_1 solution = new Day15_1();
-
-                    var result = solution.TestPartAResult();
-
-                    Assert.AreEqual(40, result);
-                }
-
-                [TestMethod]
-                public void Day15_1bTest()
-                {
-                    Day15_1 solution = new Day15_1();
+                    Day15 solution = new Day15(10, 20);
 
                     var result = solution.TestPartBResult();
 
-                    Assert.AreEqual(315, result);
+                    Assert.AreEqual(56000011L, result);
                 }
-
+        /*
                 [TestMethod]
                 public void Day15_2aTest()
                 {

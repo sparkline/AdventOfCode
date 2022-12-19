@@ -92,6 +92,18 @@ namespace AdventOfCode2022.Common
         }
 
         public static int Abs(this int x) { return Math.Abs(x); }
+
+        public static int ToInt(this string s) { return int.Parse(s); }
+
+        public static bool Touches(this (int from, int to) own, (int from, int to) other)
+        {
+            return (own.from <= other.to) && (other.from <= own.to);
+        }
+        public static (int from, int to) Union(this (int from, int to) own, (int from, int to) other)
+        {
+            return (from: Math.Min(own.from, other.from), to: Math.Max(own.to, other.to));
+        }
+
     }
 
 }
